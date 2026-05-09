@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Book Court — Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#0d0d0d;--white:#fff;--off:#f7f5f2;--lime:#a8e000;--lime-d:#7ab800;--orange:#ff4d1c;--orange-d:#e8431a;--grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;--fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace}
+    html{scroll-behavior:smooth}body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+    .nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--orange)}
+    .nav-cta{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:10px 22px;border:none;cursor:none;transition:background .2s;text-decoration:none;display:inline-block}
+    .nav-cta:hover{background:var(--orange)}
+
+    .page-wrap{padding-top:72px}
+    .breadcrumb{padding:16px 48px;background:var(--off);border-bottom:1px solid var(--mid);font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .breadcrumb a{color:var(--muted);text-decoration:none;transition:color .2s}.breadcrumb a:hover{color:var(--orange)}
+    .breadcrumb span{color:var(--text);margin:0 8px}
+
+    .court-hero{background:var(--off);height:280px;display:flex;align-items:center;justify-content:center;font-size:8rem;border-bottom:1.5px solid var(--mid);position:relative}
+    .court-hero-overlay{position:absolute;bottom:0;left:0;right:0;padding:24px 48px;display:flex;align-items:flex-end;justify-content:space-between}
+    .sport-pill{font-family:var(--fm);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;background:var(--black);color:var(--white);padding:6px 14px}
+
+    .court-layout{display:grid;grid-template-columns:1fr 380px;gap:0;min-height:calc(100vh - 350px)}
+
+    /* LEFT PANEL */
+    .court-main{padding:48px;border-right:1px solid var(--mid)}
+    .court-name{font-family:var(--fd);font-size:clamp(2.5rem,5vw,4rem);line-height:.95;letter-spacing:.03em;color:var(--black);margin-bottom:8px}
+    .court-location{font-family:var(--fm);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+    .court-rating-row{display:flex;align-items:center;gap:12px;margin-bottom:32px}
+    .stars{color:var(--orange);font-size:1rem}
+    .rating-num{font-family:var(--fm);font-size:.72rem;font-weight:700}
+    .rating-count{font-family:var(--fm);font-size:.62rem;color:var(--muted)}
+
+    .section-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .amenities-grid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+    .amenity{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;background:var(--grey);color:var(--text);border:1px solid var(--mid)}
+
+    .slots-section{margin-bottom:36px}
+    .date-picker{display:flex;gap:8px;margin-bottom:20px;overflow-x:auto;padding-bottom:4px}
+    .date-btn{flex-shrink:0;padding:10px 18px;border:1.5px solid var(--mid);background:var(--white);cursor:none;text-align:center;transition:all .2s}
+    .date-btn:hover,.date-btn.active{border-color:var(--orange);background:var(--orange);color:var(--white)}
+    .date-btn .day{font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:inherit;display:block}
+    .date-btn .num{font-family:var(--fd);font-size:1.4rem;line-height:1;color:inherit}
+    .date-btn.active .day,.date-btn:hover .day{color:rgba(255,255,255,.7)}
+
+    .slots-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .slot-btn{padding:12px 8px;border:1.5px solid var(--mid);background:var(--white);cursor:none;text-align:center;font-family:var(--fm);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;transition:all .2s;color:var(--text)}
+    .slot-btn:hover,.slot-btn.selected{border-color:var(--orange);background:rgba(255,77,28,.08);color:var(--orange)}
+    .slot-btn.booked{background:var(--grey);color:var(--muted);cursor:not-allowed;border-color:var(--mid);opacity:.5}
+
+    /* RIGHT PANEL — BOOKING */
+    .booking-panel{padding:48px 40px;background:var(--off);position:sticky;top:72px;height:fit-content}
+    .booking-panel h3{font-family:var(--fd);font-size:1.8rem;letter-spacing:.05em;margin-bottom:8px}
+    .price-big{font-family:var(--fd);font-size:3rem;color:var(--black);line-height:1}
+    .price-big small{font-family:var(--fm);font-size:.6rem;color:var(--muted);font-weight:normal;display:block;letter-spacing:.1em;margin-top:2px}
+
+    .booking-summary{background:var(--white);border:1px solid var(--mid);padding:20px;margin:24px 0}
+    .summary-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--mid)}
+    .summary-row:last-child{border-bottom:none;padding-top:12px}
+    .summary-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .summary-val{font-family:var(--fm);font-size:.68rem;font-weight:700;color:var(--text)}
+    .summary-total .summary-label{color:var(--text)}
+    .summary-total .summary-val{color:var(--orange);font-size:.82rem}
+
+    .player-form{margin-bottom:24px}
+    .form-field{margin-bottom:14px}
+    .form-field label{font-family:var(--fm);font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px}
+    .form-field input{width:100%;padding:12px 16px;border:1.5px solid var(--mid);background:var(--white);font-family:var(--fb);font-size:.9rem;color:var(--text);outline:none;transition:border-color .2s;cursor:none}
+    .form-field input:focus{border-color:var(--orange)}
+
+    .pay-btn{width:100%;background:var(--orange);color:var(--white);font-family:var(--fd);font-size:1.4rem;letter-spacing:.1em;padding:18px;border:none;cursor:none;transition:background .2s;display:block;text-align:center}
+    .pay-btn:hover{background:var(--orange-d)}
+    .pay-btn:disabled{background:var(--mid);color:var(--muted);cursor:not-allowed}
+    .secure-note{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:12px}
+
+    /* SUCCESS MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--white);padding:56px 48px;max-width:480px;width:90%;text-align:center;position:relative}
+    .modal-icon{font-size:4rem;margin-bottom:20px;display:block}
+    .modal h2{font-family:var(--fd);font-size:2.4rem;letter-spacing:.05em;color:var(--black);margin-bottom:12px}
+    .modal p{font-size:.9rem;color:var(--muted);line-height:1.7;margin-bottom:8px}
+    .modal-ref{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;background:var(--grey);padding:8px 16px;display:inline-block;margin:12px 0;color:var(--text)}
+    .modal-close{margin-top:24px;background:var(--black);color:var(--white);font-family:var(--fm);font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:14px 36px;border:none;cursor:none;transition:background .2s}
+    .modal-close:hover{background:var(--orange)}
+
+    footer{background:var(--off);border-top:1.5px solid var(--mid);padding:40px 48px 28px}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center}
+    .footer-logo{font-family:var(--fd);font-size:2rem;color:var(--black)}
+    .footer-logo span{color:var(--orange)}
+    .footer-bottom p{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}.nav-links{display:none}
+      .breadcrumb,.court-hero-overlay,.court-main{padding-left:20px;padding-right:20px}
+      .court-layout{grid-template-columns:1fr}
+      .booking-panel{position:static;border-top:1.5px solid var(--mid)}
+      .slots-grid{grid-template-columns:repeat(3,1fr)}
+      footer{padding:28px 20px}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="courts.html">Courts</a></li>
+    <li><a href="tournaments.html">Tournaments</a></li>
+    <li><a href="leagues.html">Leagues</a></li>
+  </ul>
+  <a href="venue.html" class="nav-cta">List Your Venue</a>
+</nav>
+
+<div class="page-wrap">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a><span>›</span>
+    <a href="courts.html">Courts</a><span>›</span>
+    <span id="breadcrumbName">Court Detail</span>
+  </div>
+
+  <div class="court-hero" id="courtHero">
+    <span id="courtEmoji">🏸</span>
+    <div class="court-hero-overlay">
+      <div class="sport-pill" id="courtSport">Badminton</div>
+    </div>
+  </div>
+
+  <div class="court-layout">
+    <div class="court-main">
+      <h1 class="court-name" id="courtName">Loading...</h1>
+      <div class="court-location" id="courtLocation"></div>
+      <div class="court-rating-row">
+        <span class="stars" id="courtStars"></span>
+        <span class="rating-num" id="courtRating"></span>
+        <span class="rating-count" id="courtReviews"></span>
+      </div>
+
+      <div class="section-label">Amenities</div>
+      <div class="amenities-grid" id="courtAmenities"></div>
+
+      <div class="slots-section">
+        <div class="section-label">Select Date</div>
+        <div class="date-picker" id="datePicker"></div>
+        <div class="section-label">Available Slots</div>
+        <div class="slots-grid" id="slotsGrid"></div>
+      </div>
+    </div>
+
+    <div class="booking-panel">
+      <h3>BOOK THIS COURT</h3>
+      <div class="price-big" id="priceDisplay">₹350<small>per hour</small></div>
+
+      <div class="booking-summary">
+        <div class="summary-row">
+          <span class="summary-label">Date</span>
+          <span class="summary-val" id="sumDate">— Select date</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Slot</span>
+          <span class="summary-val" id="sumSlot">— Select slot</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Duration</span>
+          <span class="summary-val">1 Hour</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Convenience Fee</span>
+          <span class="summary-val" id="sumFee">₹25</span>
+        </div>
+        <div class="summary-row summary-total">
+          <span class="summary-label" style="font-weight:600;color:var(--black)">Total</span>
+          <span class="summary-val" id="sumTotal">₹375</span>
+        </div>
+      </div>
+
+      <div class="player-form">
+        <div class="form-field">
+          <label>Your Name</label>
+          <input type="text" id="playerName" placeholder="Full name"/>
+        </div>
+        <div class="form-field">
+          <label>Mobile Number</label>
+          <input type="tel" id="playerPhone" placeholder="+91 98765 43210"/>
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" id="playerEmail" placeholder="you@email.com"/>
+        </div>
+      </div>
+
+      <button class="pay-btn" id="payBtn" onclick="initiatePayment()">PAY & CONFIRM BOOKING</button>
+      <div class="secure-note">🔒 Secured by Razorpay · Instant QR confirmation</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUCCESS MODAL -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <span class="modal-icon">✅</span>
+    <h2>BOOKING CONFIRMED!</h2>
+    <p>Your court slot has been booked successfully.</p>
+    <div class="modal-ref" id="bookingRef">REF: PLAY-2025-XXXXX</div>
+    <p style="font-size:.82rem">A confirmation has been sent to your email & WhatsApp.</p>
+    <button class="modal-close" onclick="document.getElementById('successModal').classList.remove('show');window.location='courts.html'">Back to Courts</button>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-logo">PL<span>A</span>Y</div>
+    <p>© 2025 Play Sports Pvt. Ltd.</p>
+  </div>
+</footer>
+
+<script>
+// ── COURT DATA ──
+const COURTS = {
+  c1:{id:'c1',name:'Sportsfit Badminton Arena',sport:'Badminton',city:'Mumbai',area:'Andheri West',price:350,unit:'per hour',rating:4.8,reviews:312,amenities:['AC','Shuttle Provided','Parking','Changing Room','Pro Shop','Water Station'],courts:6,emoji:'🏸',slots:['6:00 AM','7:00 AM','8:00 AM','9:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c2:{id:'c2',name:'Smash Zone Table Tennis',sport:'Table Tennis',city:'Mumbai',area:'Dadar East',price:180,unit:'per hour',rating:4.6,reviews:198,amenities:['Coaching Available','Equipment Rental','Parking','Water Station'],courts:8,emoji:'🏓',slots:['7:00 AM','8:00 AM','4:00 PM','5:00 PM','6:00 PM','7:00 PM']},
+  c3:{id:'c3',name:'Goal Zone Football Turf',sport:'Football',city:'Mumbai',area:'Powai',price:1200,unit:'per hour',rating:4.7,reviews:445,amenities:['Floodlights','Changing Room','Parking','Cafeteria','First Aid','Referee Available'],courts:3,emoji:'⚽',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c4:{id:'c4',name:'Ace Tennis Club',sport:'Tennis',city:'Mumbai',area:'Bandra West',price:600,unit:'per hour',rating:4.9,reviews:267,amenities:['Clay Court','Hard Court','Coaching','Parking','Equipment Rental','Cafeteria'],courts:4,emoji:'🎾',slots:['6:00 AM','7:00 AM','8:00 AM','4:00 PM','5:00 PM','6:00 PM']},
+  c5:{id:'c5',name:'Bandra Aquatic Centre',sport:'Swimming',city:'Mumbai',area:'Bandra East',price:250,unit:'per session',rating:4.5,reviews:189,amenities:['Olympic Pool','Coaching','Changing Room','Locker','Water Temperature Controlled'],courts:2,emoji:'🏊',slots:['6:00 AM','7:00 AM','8:00 AM','5:00 PM','6:00 PM']},
+  c6:{id:'c6',name:'Hoops Factory Basketball',sport:'Basketball',city:'Mumbai',area:'Vikhroli',price:500,unit:'per hour',rating:4.4,reviews:134,amenities:['Indoor Court','AC','Changing Room','Equipment','Coaching'],courts:2,emoji:'🏀',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c7:{id:'c7',name:'CricBox Cricket Nets',sport:'Cricket',city:'Mumbai',area:'Thane',price:800,unit:'per hour',rating:4.6,reviews:321,amenities:['Bowling Machine','Coaching','Pitching Net','Parking','Equipment Rental'],courts:6,emoji:'🏏',slots:['6:00 AM','7:00 AM','8:00 AM','4:00 PM','5:00 PM','6:00 PM']},
+  c8:{id:'c8',name:'Squash Central',sport:'Squash',city:'Mumbai',area:'Lower Parel',price:400,unit:'per hour',rating:4.7,reviews:156,amenities:['Glass Back Court','Coaching','AC','Changing Room','Equipment'],courts:4,emoji:'🎯',slots:['7:00 AM','8:00 AM','12:00 PM','5:00 PM','6:00 PM','7:00 PM']},
+  c9:{id:'c9',name:'Smashers Badminton Academy',sport:'Badminton',city:'Delhi',area:'Dwarka',price:300,unit:'per hour',rating:4.7,reviews:289,amenities:['AC','Shuttle Provided','Coaching','Parking','Pro Shop'],courts:8,emoji:'🏸',slots:['6:00 AM','7:00 AM','8:00 AM','5:00 PM','6:00 PM','7:00 PM']},
+  c10:{id:'c10',name:'Delhi Football Arena',sport:'Football',city:'Delhi',area:'Saket',price:1000,unit:'per hour',rating:4.5,reviews:367,amenities:['Astroturf','Floodlights','Changing Room','Cafeteria','Parking'],courts:4,emoji:'⚽',slots:['6:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c13:{id:'c13',name:'Shuttle Up Badminton',sport:'Badminton',city:'Bangalore',area:'Whitefield',price:320,unit:'per hour',rating:4.8,reviews:412,amenities:['AC','Shuttle Provided','Parking','Pro Shop','Cafeteria','Coaching'],courts:10,emoji:'🏸',slots:['6:00 AM','7:00 AM','8:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c14:{id:'c14',name:'Koramangala Football Hub',sport:'Football',city:'Bangalore',area:'Koramangala',price:1100,unit:'per hour',rating:4.6,reviews:534,amenities:['Astroturf','Floodlights','Changing Room','Parking','Cafeteria'],courts:5,emoji:'⚽',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c17:{id:'c17',name:'Rally Point Badminton',sport:'Badminton',city:'Pune',area:'Kothrud',price:280,unit:'per hour',rating:4.6,reviews:234,amenities:['AC','Shuttle','Parking','Coaching','Changing Room'],courts:6,emoji:'🏸',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM']},
+  c19:{id:'c19',name:'Ace Badminton Hyderabad',sport:'Badminton',city:'Hyderabad',area:'Gachibowli',price:300,unit:'per hour',rating:4.7,reviews:267,amenities:['AC','Shuttle','Coaching','Parking','Pro Shop'],courts:8,emoji:'🏸',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM','8:00 PM']},
+  c21:{id:'c21',name:'Chennai Badminton Club',sport:'Badminton',city:'Chennai',area:'Anna Nagar',price:290,unit:'per hour',rating:4.5,reviews:178,amenities:['AC','Shuttle','Parking','Coaching'],courts:6,emoji:'🏸',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM']},
+  c23:{id:'c23',name:'Park Street Badminton',sport:'Badminton',city:'Kolkata',area:'Park Street',price:250,unit:'per hour',rating:4.5,reviews:145,amenities:['AC','Shuttle','Parking','Coaching'],courts:4,emoji:'🏸',slots:['6:00 AM','7:00 AM','5:00 PM','6:00 PM','7:00 PM']},
+};
+
+const DEFAULT_COURT = COURTS.c1;
+let court = DEFAULT_COURT;
+let selectedDate = null;
+let selectedSlot = null;
+
+// Load court from URL param
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+if(id && COURTS[id]) court = COURTS[id];
+
+function stars(r){return '★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r))}
+
+function initPage(){
+  document.title = court.name + ' — Play';
+  document.getElementById('courtName').textContent = court.name;
+  document.getElementById('breadcrumbName').textContent = court.name;
+  document.getElementById('courtEmoji').textContent = court.emoji;
+  document.getElementById('courtSport').textContent = court.sport;
+  document.getElementById('courtLocation').textContent = '📍 ' + court.area + ', ' + court.city + ' · ' + court.courts + ' Courts';
+  document.getElementById('courtStars').textContent = stars(court.rating);
+  document.getElementById('courtRating').textContent = court.rating;
+  document.getElementById('courtReviews').textContent = '(' + court.reviews + ' reviews)';
+  document.getElementById('priceDisplay').innerHTML = '₹' + court.price.toLocaleString() + '<small>' + court.unit + '</small>';
+  document.getElementById('sumFee').textContent = '₹25';
+  document.getElementById('sumTotal').textContent = '₹' + (court.price + 25).toLocaleString();
+
+  // Amenities
+  document.getElementById('courtAmenities').innerHTML = court.amenities.map(a=>`<span class="amenity">${a}</span>`).join('');
+
+  // Date picker — next 7 days
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dp = document.getElementById('datePicker');
+  dp.innerHTML = '';
+  for(let i=0;i<7;i++){
+    const d = new Date(); d.setDate(d.getDate()+i);
+    const btn = document.createElement('button');
+    btn.className = 'date-btn' + (i===0?' active':'');
+    btn.innerHTML = `<span class="day">${i===0?'Today':days[d.getDay()]}</span><span class="num">${d.getDate()} ${months[d.getMonth()]}</span>`;
+    const dateStr = d.toDateString();
+    btn.onclick = ()=>{
+      document.querySelectorAll('.date-btn').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedDate = dateStr;
+      document.getElementById('sumDate').textContent = d.getDate()+' '+months[d.getMonth()];
+      updateTotal();
+    };
+    dp.appendChild(btn);
+    if(i===0){ selectedDate = dateStr; document.getElementById('sumDate').textContent = d.getDate()+' '+months[d.getMonth()]; }
+  }
+
+  renderSlots();
+}
+
+function renderSlots(){
+  const booked = [court.slots[1], court.slots[3]]; // simulate some booked
+  document.getElementById('slotsGrid').innerHTML = court.slots.map(s=>{
+    const isBooked = booked.includes(s);
+    return `<button class="slot-btn${isBooked?' booked':''}" ${isBooked?'disabled':''} onclick="selectSlot(this,'${s}')">${s}</button>`;
+  }).join('');
+}
+
+function selectSlot(btn, slot){
+  document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedSlot = slot;
+  document.getElementById('sumSlot').textContent = slot;
+  updateTotal();
+}
+
+function updateTotal(){
+  const fee = 25;
+  document.getElementById('sumTotal').textContent = '₹' + (court.price + fee).toLocaleString();
+}
+
+// ── RAZORPAY PAYMENT ──
+function initiatePayment(){
+  const name = document.getElementById('playerName').value.trim();
+  const phone = document.getElementById('playerPhone').value.trim();
+  const email = document.getElementById('playerEmail').value.trim();
+
+  if(!name||!phone||!email){ alert('Please fill in all your details.'); return; }
+  if(!selectedSlot){ alert('Please select a time slot.'); return; }
+  if(!selectedDate){ alert('Please select a date.'); return; }
+
+  const amount = (court.price + 25) * 100; // Razorpay takes paise
+
+  const options = {
+    // ⚡ REPLACE WITH YOUR LIVE RAZORPAY KEY
+    key: 'rzp_test_Sktp03hs6SLL53',
+    amount: amount,
+    currency: 'INR',
+    name: 'Play — Sports Booking',
+    description: court.name + ' · ' + selectedSlot + ' · ' + selectedDate,
+    image: '',
+    handler: function(response){
+      const ref = 'PLAY-' + Date.now().toString(36).toUpperCase();
+      document.getElementById('bookingRef').textContent = 'REF: ' + ref;
+      document.getElementById('successModal').classList.add('show');
+    },
+    prefill: { name, email, contact: phone },
+    theme: { color: '#ff4d1c' },
+    modal: { ondismiss: function(){ console.log('Payment cancelled'); } }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+}
+
+initPage();
+
+// Cursor
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a,input').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>

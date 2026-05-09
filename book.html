@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Book Sports Courts & Tournaments Across India | Play Marketplace</title>
+  <meta name="description" content="Book badminton courts, football turfs, cricket nets, tennis courts across Mumbai, Delhi, Bangalore, Pune, Hyderabad, Chennai, Kolkata. 80+ verified venues. Instant confirmation."/>
+  <meta name="keywords" content="book badminton court mumbai, football turf booking delhi, cricket nets bangalore, tennis court booking india, sports court booking online, tournament registration india, playin.info"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://playin.info/book.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#0d0d0d;--white:#fff;--off:#f7f5f2;--lime:#a8e000;--lime-d:#7ab800;--orange:#ff4d1c;--orange-d:#e8431a;--grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;--fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace}
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.8rem;letter-spacing:.1em;color:var(--black);text-decoration:none}.nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:24px;list-style:none}.nav-links a{font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--orange)}
+    .nav-cta{background:var(--orange);color:var(--white);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:9px 20px;border:none;cursor:none;transition:background .2s;text-decoration:none;display:inline-block}.nav-cta:hover{background:var(--orange-d)}
+    .page-hero{padding:86px 40px 44px;background:var(--black);position:relative;overflow:hidden}
+    .hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px}
+    .hero-tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;position:relative}
+    .page-hero h1{font-family:var(--fd);font-size:clamp(2.8rem,6vw,6rem);line-height:.92;letter-spacing:.03em;color:var(--white);position:relative;margin-bottom:12px}
+    .page-hero h1 em{font-style:normal;color:var(--lime)}
+    .page-hero p{font-size:.9rem;color:rgba(255,255,255,.45);font-weight:300;max-width:560px;line-height:1.7;position:relative;margin-bottom:28px}
+    .hero-stats-row{display:flex;gap:40px;position:relative}
+    .hstat .n{font-family:var(--fd);font-size:2.2rem;color:var(--lime);line-height:1}
+    .hstat .l{font-family:var(--fm);font-size:.55rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px}
+    .fee-notice{background:rgba(168,224,0,.1);border-top:1px solid rgba(168,224,0,.2);border-bottom:1px solid rgba(168,224,0,.2);padding:12px 40px;display:flex;align-items:center;gap:12px}
+    .fee-notice p{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;color:var(--lime-d)}
+    .filters-wrap{background:var(--white);border-bottom:1.5px solid var(--mid);position:sticky;top:57px;z-index:100}
+    .filters-top{padding:16px 40px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--mid)}
+    .f-select{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 12px;border:1.5px solid var(--mid);background:var(--white);color:var(--text);cursor:none;outline:none}
+    .f-select:focus{border-color:var(--orange)}
+    .f-input{font-family:var(--fb);font-size:.82rem;padding:9px 12px;border:1.5px solid var(--mid);background:var(--white);color:var(--text);cursor:none;outline:none;min-width:180px}
+    .f-input:focus{border-color:var(--orange)}
+    .f-btn{font-family:var(--fm);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:9px 14px;border:1.5px solid var(--mid);background:var(--white);color:var(--muted);cursor:none;transition:all .2s}
+    .f-btn.active{border-color:var(--orange);color:var(--orange);background:rgba(255,77,28,.04)}
+    .f-btn:hover:not(.active){border-color:var(--black);color:var(--text)}
+    .results-info{margin-left:auto;font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .sport-tabs{padding:0 40px;display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+    .sport-tabs::-webkit-scrollbar{display:none}
+    .s-tab{font-family:var(--fm);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:11px 18px;border:none;background:none;cursor:none;color:var(--muted);border-bottom:2px solid transparent;white-space:nowrap;transition:all .2s;flex-shrink:0}
+    .s-tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+    .main-layout{display:grid;grid-template-columns:1fr 340px;gap:0;align-items:start}
+    .listings-col{padding:28px 40px 80px;border-right:1px solid var(--mid)}
+    .list-section-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 16px}
+    .list-section-head h2{font-family:var(--fd);font-size:1.5rem;letter-spacing:.06em;color:var(--black)}
+    .list-section-head .count{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .list-divider{height:1px;background:var(--mid);margin:28px 0}
+    /* VENUE CARD */
+    .venue-card{border:1px solid var(--mid);margin-bottom:2px;background:var(--off);cursor:none;transition:all .22s;overflow:hidden;display:grid;grid-template-columns:80px 1fr 130px;align-items:stretch}
+    .venue-card:hover,.venue-card.sel-card{background:var(--white);box-shadow:0 4px 20px rgba(0,0,0,.08);border-color:var(--orange);transform:translateX(2px)}
+    .venue-card.feat{border-left:3px solid var(--orange)}
+    .vc-sport{background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 6px}
+    .vc-sport .ve{font-size:1.8rem}
+    .vc-sport .vs{font-family:var(--fm);font-size:.4rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center}
+    .vc-sport.feat-col{background:var(--orange)}
+    .vc-body{padding:13px 16px}
+    .vc-top{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+    .feat-tag{font-family:var(--fm);font-size:.44rem;letter-spacing:.1em;text-transform:uppercase;background:var(--orange);color:var(--white);padding:2px 7px}
+    .vc-name{font-family:var(--fd);font-size:1.15rem;letter-spacing:.04em;color:var(--black);line-height:1}
+    .vc-loc{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:3px 0 7px}
+    .vc-tags{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:6px}
+    .vc-tag{font-family:var(--fm);font-size:.44rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;background:var(--grey);color:var(--muted);border:1px solid var(--mid)}
+    .vc-meta{display:flex;gap:12px;align-items:center}
+    .vc-stars{color:var(--orange);font-size:.68rem}
+    .vc-rn{font-family:var(--fm);font-size:.55rem;font-weight:700}
+    .vc-rc{font-family:var(--fm);font-size:.5rem;color:var(--muted)}
+    .vc-hrs{font-family:var(--fm);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .vc-price-col{padding:13px 14px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;border-left:1px solid var(--mid);background:var(--white)}
+    .vcp{font-family:var(--fd);font-size:1.35rem;color:var(--black);line-height:1;text-align:right}
+    .vcpu{font-family:var(--fm);font-size:.46rem;color:var(--muted);letter-spacing:.08em;display:block}
+    .vcf{font-family:var(--fm);font-size:.44rem;color:var(--orange);text-align:right;margin-top:2px;text-transform:uppercase;letter-spacing:.08em}
+    .vct{font-family:var(--fm);font-size:.56rem;font-weight:700;color:var(--lime-d);text-align:right;margin-top:1px}
+    .book-btn{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border:none;cursor:none;transition:background .2s;margin-top:6px}
+    .book-btn:hover{background:var(--orange)}
+    /* TOURNAMENT CARD */
+    .t-card{border:1px solid var(--mid);margin-bottom:2px;background:var(--off);cursor:none;transition:all .22s;overflow:hidden;display:grid;grid-template-columns:80px 1fr 130px;align-items:stretch}
+    .t-card:hover,.t-card.sel-card{background:var(--white);box-shadow:0 4px 20px rgba(0,0,0,.08);border-color:var(--lime-d);transform:translateX(2px)}
+    .t-card.feat{border-left:3px solid var(--lime-d)}
+    .tc-sport{background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:12px 6px}
+    .tc-sport .te{font-size:1.8rem}
+    .tc-sport .ts{font-family:var(--fm);font-size:.4rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center}
+    .tc-sport.feat-col{background:var(--lime-d)}
+    .tc-body{padding:13px 16px}
+    .tc-badges{display:flex;gap:5px;margin-bottom:5px}
+    .tc-badge{font-family:var(--fm);font-size:.44rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid}
+    .tc-badge.t-type{color:var(--lime-d);border-color:rgba(122,184,0,.3);background:rgba(168,224,0,.07)}
+    .tc-badge.t-feat{color:var(--orange);border-color:rgba(255,77,28,.2);background:rgba(255,77,28,.05)}
+    .tc-name{font-family:var(--fd);font-size:1.1rem;letter-spacing:.04em;color:var(--black);margin-bottom:5px;line-height:1.05}
+    .tc-meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:5px}
+    .tc-meta span{font-family:var(--fm);font-size:.5rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .tc-cats{display:flex;flex-wrap:wrap;gap:3px}
+    .tc-cat{font-family:var(--fm);font-size:.44rem;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;background:var(--grey);color:var(--muted);border:1px solid var(--mid)}
+    .tc-price-col{padding:13px 14px;display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between;border-left:1px solid var(--mid);background:var(--white)}
+    .tcp-prize{font-family:var(--fd);font-size:1rem;color:var(--lime-d);line-height:1;text-align:right}
+    .tcp-prize-l{font-family:var(--fm);font-size:.44rem;color:var(--muted);letter-spacing:.08em;display:block;text-transform:uppercase}
+    .tcp-entry{font-family:var(--fd);font-size:1.2rem;color:var(--black);text-align:right;line-height:1;margin-top:5px}
+    .tcp-unit{font-family:var(--fm);font-size:.44rem;color:var(--muted);display:block;letter-spacing:.08em;text-transform:uppercase}
+    .tcp-fee{font-family:var(--fm);font-size:.44rem;color:var(--orange);text-align:right;margin-top:2px;text-transform:uppercase}
+    .tcp-total{font-family:var(--fm);font-size:.56rem;font-weight:700;color:var(--lime-d);text-align:right}
+    .spots-pill{font-family:var(--fm);font-size:.44rem;letter-spacing:.08em;text-transform:uppercase;padding:2px 7px;border:1px solid;margin-top:3px;display:inline-block}
+    .sp-low{color:var(--orange);border-color:rgba(255,77,28,.25);background:rgba(255,77,28,.05)}
+    .sp-ok{color:var(--lime-d);border-color:rgba(122,184,0,.25);background:rgba(168,224,0,.05)}
+    .reg-btn{background:var(--lime-d);color:var(--white);font-family:var(--fm);font-size:.54rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 12px;border:none;cursor:none;transition:background .2s;margin-top:6px}
+    .reg-btn:hover{background:var(--black)}
+    /* EMPTY */
+    .empty-state{text-align:center;padding:56px 24px;color:var(--muted)}
+    .empty-state .ei{font-size:3rem;margin-bottom:12px}
+    .empty-state p{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase}
+    /* SIDEBAR */
+    .booking-sidebar{padding:24px;position:sticky;top:116px}
+    .sb-title{font-family:var(--fd);font-size:1.4rem;letter-spacing:.05em;color:var(--black);margin-bottom:3px}
+    .sb-sub{font-family:var(--fm);font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
+    .bp-empty{background:var(--off);border:1.5px dashed var(--mid);padding:28px 20px;text-align:center;margin-bottom:14px}
+    .bp-empty .ei{font-size:2.2rem;margin-bottom:10px}
+    .bp-empty p{font-family:var(--fm);font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);line-height:1.6}
+    .bp-active{background:var(--off);border:1.5px solid var(--mid);padding:20px;margin-bottom:14px;display:none}
+    .bp-badge{font-family:var(--fm);font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;background:var(--orange);color:var(--white);padding:2px 9px;display:inline-block;margin-bottom:7px}
+    .bp-name{font-family:var(--fd);font-size:1.3rem;letter-spacing:.04em;color:var(--black);margin-bottom:3px;line-height:1.05}
+    .bp-loc{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .mini-lbl{font-family:var(--fm);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
+    .date-row{display:flex;gap:4px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none}
+    .date-row::-webkit-scrollbar{display:none}
+    .d-btn{flex-shrink:0;padding:6px 9px;border:1.5px solid var(--mid);background:var(--white);cursor:none;text-align:center;transition:all .2s}
+    .d-btn.active{border-color:var(--orange);background:var(--orange)}
+    .d-btn .dd{font-family:var(--fm);font-size:.44rem;letter-spacing:.08em;text-transform:uppercase;display:block;color:var(--muted)}
+    .d-btn .dn{font-family:var(--fd);font-size:1rem;line-height:1;color:var(--black)}
+    .d-btn.active .dd{color:rgba(255,255,255,.7)}
+    .d-btn.active .dn{color:var(--white)}
+    .slots-g{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-bottom:12px}
+    .slot-b{padding:7px 4px;border:1.5px solid var(--mid);background:var(--white);cursor:none;text-align:center;font-family:var(--fm);font-size:.5rem;letter-spacing:.06em;text-transform:uppercase;transition:all .2s;color:var(--text)}
+    .slot-b.sel{border-color:var(--orange);background:rgba(255,77,28,.07);color:var(--orange)}
+    .slot-b:hover:not(.booked){border-color:var(--orange)}
+    .slot-b.booked{background:var(--grey);color:var(--muted);opacity:.5;cursor:not-allowed}
+    .p-field{margin-bottom:9px}
+    .p-field label{font-family:var(--fm);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:4px}
+    .p-field input{width:100%;padding:9px 11px;border:1.5px solid var(--mid);background:var(--white);font-family:var(--fb);font-size:.82rem;color:var(--text);outline:none;transition:border-color .2s;cursor:none}
+    .p-field input:focus{border-color:var(--orange)}
+    .price-box{background:var(--white);border:1px solid var(--mid);padding:12px;margin:10px 0}
+    .pb-row{display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--mid)}
+    .pb-row:last-child{border-bottom:none;padding-top:8px}
+    .pb-l{font-family:var(--fm);font-size:.52rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .pb-r{font-family:var(--fm);font-size:.58rem;font-weight:700;color:var(--text)}
+    .pb-fee .pb-l,.pb-fee .pb-r{color:var(--orange)}
+    .pb-total .pb-l{color:var(--black);font-weight:600}
+    .pb-total .pb-r{color:var(--orange);font-size:.68rem}
+    .pay-btn{width:100%;background:var(--orange);color:var(--white);font-family:var(--fd);font-size:1.25rem;letter-spacing:.1em;padding:14px;border:none;cursor:none;transition:background .2s}
+    .pay-btn:hover{background:var(--orange-d)}
+    .secure{font-family:var(--fm);font-size:.48rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:7px;line-height:1.6}
+    .mkt-note{background:var(--off);border:1px solid var(--mid);padding:12px;font-family:var(--fm);font-size:.49rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.65}
+    .mkt-note strong{color:var(--text);display:block;margin-bottom:3px}
+    /* MODAL */
+    .modal-ov{position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:1000;display:none;align-items:center;justify-content:center}
+    .modal-ov.show{display:flex}
+    .modal{background:var(--white);padding:48px 40px;max-width:440px;width:90%;text-align:center}
+    .modal .mi{font-size:3.2rem;margin-bottom:14px}
+    .modal h2{font-family:var(--fd);font-size:2rem;letter-spacing:.05em;margin-bottom:8px}
+    .modal p{font-size:.84rem;color:var(--muted);line-height:1.7;margin-bottom:5px}
+    .modal .ref{font-family:var(--fm);font-size:.6rem;letter-spacing:.12em;background:var(--off);padding:7px 14px;display:inline-block;margin:8px 0;border:1px solid var(--mid)}
+    .modal-close{margin-top:16px;background:var(--black);color:var(--white);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:11px 26px;border:none;cursor:none}
+    .modal-close:hover{background:var(--orange)}
+    footer{background:var(--off);border-top:1.5px solid var(--mid);padding:32px 40px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .fl{font-family:var(--fd);font-size:1.8rem;color:var(--black)}.fl span{color:var(--orange)}
+    .fp{font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+    .fd{font-family:var(--fm);font-size:.46rem;letter-spacing:.08em;color:rgba(138,133,128,.5);text-transform:uppercase;margin-top:3px}
+    @media(max-width:1100px){.main-layout{grid-template-columns:1fr}}
+    @media(max-width:900px){
+      nav{padding:12px 18px}.nav-links{display:none}
+      .page-hero,.listings-col{padding-left:18px;padding-right:18px}
+      .filters-top{padding:12px 18px}.sport-tabs{padding:0 18px}
+      .venue-card,.t-card{grid-template-columns:60px 1fr}
+      .vc-price-col,.tc-price-col{display:none}
+      .booking-sidebar{padding:16px}
+      footer{padding:24px 18px 18px}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="book.html" class="active">Book</a></li>
+    <li><a href="cycling.html">Cycling</a></li>
+    <li><a href="leagues.html">Leagues</a></li>
+    <li><a href="index.html">Home</a></li>
+  </ul>
+  <a href="partner.html" class="nav-cta">List on Play</a>
+</nav>
+<div class="page-hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-tag">— India's Sports Marketplace · Verified Partner Venues Only</div>
+  <h1>BOOK COURTS &<br><em>TOURNAMENTS</em><br>ACROSS INDIA</h1>
+  <p>80+ verified venues · 20+ tournaments · 7 metro cities · All sports. Book instantly with confirmed slots across India's top sports facilities.</p>
+  <div class="hero-stats-row">
+    <div class="hstat"><div class="n">80+</div><div class="l">Verified Venues</div></div>
+    <div class="hstat"><div class="n">20+</div><div class="l">Tournaments</div></div>
+    <div class="hstat"><div class="n">7</div><div class="l">Metro Cities</div></div>
+    <div class="hstat"><div class="n">10</div><div class="l">Sports</div></div>
+  </div>
+</div>
+
+<div class="filters-wrap">
+  <div class="filters-top">
+    <select class="f-select" id="cityFilter" onchange="applyFilters()">
+      <option value="">All Cities</option>
+      <option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
+      <option>Pune</option><option>Hyderabad</option><option>Chennai</option><option>Kolkata</option>
+    </select>
+    <select class="f-select" id="sportFilter" onchange="applyFilters()">
+      <option value="">All Sports</option>
+      <option>Badminton</option><option>Football</option><option>Cricket</option>
+      <option>Tennis</option><option>Swimming</option><option>Table Tennis</option>
+      <option>Basketball</option><option>Squash</option>
+      <option>Pickleball</option><option>Padel</option>
+    </select>
+    <select class="f-select" id="priceFilter" onchange="applyFilters()">
+      <option value="">Any Price</option>
+      <option value="300">Under ₹300</option>
+      <option value="500">Under ₹500</option>
+      <option value="1000">Under ₹1,000</option>
+      <option value="9999">Above ₹1,000</option>
+    </select>
+    <input class="f-input" id="searchInput" placeholder="Search venue or city..." oninput="applyFilters()"/>
+    <button class="f-btn active" id="btnAll" onclick="setView('all',this)">All</button>
+    <button class="f-btn" id="btnFeat" onclick="setView('featured',this)">⭐ Featured</button>
+    <button class="f-btn" id="btnT" onclick="setView('tournaments',this)">🏆 Tournaments</button>
+    <button class="f-btn" onclick="clearAll()">✕ Clear</button>
+    <div class="results-info" id="rInfo">Loading...</div>
+  </div>
+  <div class="sport-tabs">
+    <button class="s-tab active" onclick="setSport('',this)">All Sports</button>
+    <button class="s-tab" onclick="setSport('Badminton',this)">🏸 Badminton</button>
+    <button class="s-tab" onclick="setSport('Football',this)">⚽ Football</button>
+    <button class="s-tab" onclick="setSport('Cricket',this)">🏏 Cricket</button>
+    <button class="s-tab" onclick="setSport('Tennis',this)">🎾 Tennis</button>
+    <button class="s-tab" onclick="setSport('Swimming',this)">🏊 Swimming</button>
+    <button class="s-tab" onclick="setSport('Table Tennis',this)">🏓 Table Tennis</button>
+    <button class="s-tab" onclick="setSport('Basketball',this)">🏀 Basketball</button>
+    <button class="s-tab" onclick="setSport('Squash',this)">🎯 Squash</button>
+    <button class="s-tab" onclick="setSport('Pickleball',this)">🏓 Pickleball</button>
+    <button class="s-tab" onclick="setSport('Padel',this)">🎾 Padel</button>
+  </div>
+</div>
+<div class="main-layout">
+  <div class="listings-col" id="listingsCol"></div>
+  <div class="booking-sidebar">
+    <div class="sb-title">YOUR BOOKING</div>
+    <div class="sb-sub">— Click any venue to book</div>
+    <div class="bp-empty" id="emptyPanel">
+      <div class="ei">🏸</div>
+      <p>Select a venue or tournament from the list to start your booking</p>
+    </div>
+    <div class="bp-active" id="activePanel">
+      <div class="bp-badge" id="bpBadge">Court Booking</div>
+      <div class="bp-name" id="bpName">—</div>
+      <div class="bp-loc" id="bpLoc">—</div>
+      <div class="mini-lbl" id="dateLabel">Select Date</div>
+      <div class="date-row" id="dateRow"></div>
+      <div class="mini-lbl" id="slotLbl">Available Slots</div>
+      <div class="slots-g" id="slotsGrid"></div>
+      <div class="p-field"><label>Your Name</label><input id="pName" placeholder="Full name"/></div>
+      <div class="p-field"><label>Mobile</label><input id="pPhone" type="tel" placeholder="+91 98765 43210"/></div>
+      <div class="p-field"><label>Email</label><input id="pEmail" type="email" placeholder="you@email.com"/></div>
+      <div class="price-box">
+        <div class="pb-row"><span class="pb-l" id="pbLbl">Court Fee</span><span class="pb-r" id="pbBase">₹0</span></div>
+        <div class="pb-row pb-fee"><span class="pb-l">Platform Fee (15%)</span><span class="pb-r" id="pbFee">₹0</span></div>
+        <div class="pb-row pb-total"><span class="pb-l">Total Payable</span><span class="pb-r" id="pbTotal">₹0</span></div>
+      </div>
+      <button class="pay-btn" onclick="pay()">PAY & CONFIRM →</button>
+      <div class="secure">🔒 Secured by Razorpay · Instant QR confirmation</div>
+    </div>
+    <div class="mkt-note">
+      <strong>Play Marketplace</strong>
+      Play facilitates bookings on behalf of verified partner businesses. All services delivered by the partner venue.
+    </div>
+  </div>
+</div>
+<div class="modal-ov" id="modal">
+  <div class="modal">
+    <div class="mi" id="mIco">✅</div>
+    <h2 id="mTitle">CONFIRMED!</h2>
+    <p id="mVen">—</p>
+    <div class="ref" id="mRef">REF: —</div>
+    <p id="mDet">—</p>
+    <p style="font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px" id="mNote">—</p>
+    <button class="modal-close" onclick="document.getElementById('modal').classList.remove('show')">Done</button>
+  </div>
+</div>
+<footer>
+  <div><div class="fl">PL<span>A</span>Y</div><div class="fp">India's Sports Marketplace · playin.info</div><div class="fd">Play is a marketplace. All services provided by independent verified partners.</div></div>
+  <div style="display:flex;gap:14px"><a href="index.html" style="font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none">Home</a><a href="partner.html" style="font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none">List on Play</a></div>
+</footer>
+<script>
+const FEE=15;
+const BOOKED=[1,3];
+const emo={Badminton:'🏸',Football:'⚽',Cricket:'🏏',Tennis:'🎾',Swimming:'🏊',Basketball:'🏀','Table Tennis':'🏓',Squash:'🎯','Multi-Sport':'🏆',Athletics:'🏃',Pickleball:'🏓',Padel:'🎾'};
+const V=[
+  {id:'mb1',n:'Sportsfit Badminton Arena',s:'Badminton',c:'Mumbai',a:'Andheri West',p:350,u:'hr',r:4.8,rv:312,ct:6,am:['AC','Shuttle','Parking','Changing Room'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mb2',n:'Prakash Padukone Badminton Academy',s:'Badminton',c:'Mumbai',a:'Goregaon East',p:400,u:'hr',r:4.7,rv:289,ct:8,am:['AC','Coaching','Shuttle','Parking'],h:'5AM–10PM',sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb3',n:'Badminton World Bandra',s:'Badminton',c:'Mumbai',a:'Bandra East',p:320,u:'hr',r:4.6,rv:198,ct:4,am:['AC','Shuttle','Parking'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mb4',n:'Smash Academy Thane',s:'Badminton',c:'Mumbai',a:'Thane West',p:280,u:'hr',r:4.5,rv:145,ct:6,am:['AC','Coaching','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb5',n:'NSE Badminton Court Worli',s:'Badminton',c:'Mumbai',a:'Worli',p:300,u:'hr',r:4.4,rv:167,ct:4,am:['AC','Shuttle','Parking'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mf1',n:'Goal Zone Football Turf',s:'Football',c:'Mumbai',a:'Powai',p:1200,u:'hr',r:4.7,rv:445,ct:3,am:['Astroturf','Floodlights','Changing Room','Cafeteria'],h:'6AM–11PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'mf2',n:'FootFit Turf Andheri',s:'Football',c:'Mumbai',a:'Andheri West',p:1000,u:'hr',r:4.6,rv:378,ct:2,am:['Astroturf','Floodlights','Parking'],h:'6AM–11PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mf3',n:'Turf X Malad',s:'Football',c:'Mumbai',a:'Malad West',p:950,u:'hr',r:4.5,rv:256,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mf4',n:'Premier Turf Navi Mumbai',s:'Football',c:'Mumbai',a:'Navi Mumbai',p:900,u:'hr',r:4.4,rv:189,ct:3,am:['Astroturf','Floodlights','Parking'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mc1',n:'CricBox Cricket Nets Thane',s:'Cricket',c:'Mumbai',a:'Thane',p:800,u:'hr',r:4.6,rv:321,ct:6,am:['Bowling Machine','Coaching','Nets','Parking'],h:'6AM–9PM',f:1,sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'mc2',n:'Mumbai Cricket Academy Churchgate',s:'Cricket',c:'Mumbai',a:'Churchgate',p:1200,u:'hr',r:4.8,rv:567,ct:8,am:['Turf Pitch','Coaching','Bowling Machine'],h:'6AM–8PM',sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  {id:'mc3',n:'DY Patil Cricket Ground',s:'Cricket',c:'Mumbai',a:'Navi Mumbai',p:2000,u:'hr',r:4.9,rv:234,ct:4,am:['International Standard','Floodlights','Coaching'],h:'6AM–8PM',f:1,sl:['6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'mc4',n:'Oval Maidan Cricket Nets',s:'Cricket',c:'Mumbai',a:'Churchgate',p:400,u:'hr',r:4.4,rv:445,ct:10,am:['Open Air','Coaching'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  {id:'mt1',n:'Ace Tennis Club Bandra',s:'Tennis',c:'Mumbai',a:'Bandra West',p:600,u:'hr',r:4.9,rv:267,ct:4,am:['Clay Court','Hard Court','Coaching','Parking'],h:'6AM–9PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM']},
+  {id:'mt2',n:'CLTA Tennis Worli',s:'Tennis',c:'Mumbai',a:'Worli',p:500,u:'hr',r:4.6,rv:198,ct:6,am:['Hard Court','Coaching','Parking'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'mt3',n:'Khar Gymkhana Tennis',s:'Tennis',c:'Mumbai',a:'Khar West',p:550,u:'hr',r:4.7,rv:312,ct:8,am:['Clay Court','Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM']},
+  {id:'ms1',n:'Bandra Aquatic Centre',s:'Swimming',c:'Mumbai',a:'Bandra East',p:250,u:'session',r:4.5,rv:189,ct:2,am:['Olympic Pool','Coaching','Changing Room'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'ms2',n:'Breach Candy Swimming Pool',s:'Swimming',c:'Mumbai',a:'Breach Candy',p:350,u:'session',r:4.7,rv:156,ct:2,am:['Outdoor Pool','Coaching'],h:'6AM–8PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'mtt1',n:'Smash Zone Table Tennis Dadar',s:'Table Tennis',c:'Mumbai',a:'Dadar East',p:180,u:'hr',r:4.6,rv:198,ct:8,am:['Coaching','Equipment Rental'],h:'7AM–10PM',sl:['7:00AM','8:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mbk1',n:'NBA Academy Mumbai BKC',s:'Basketball',c:'Mumbai',a:'BKC',p:800,u:'hr',r:4.8,rv:178,ct:3,am:['Professional Court','Coaching','AC'],h:'6AM–9PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'msq1',n:'Squash Central Lower Parel',s:'Squash',c:'Mumbai',a:'Lower Parel',p:400,u:'hr',r:4.7,rv:156,ct:4,am:['Glass Court','Coaching','AC'],h:'7AM–10PM',sl:['7:00AM','8:00AM','12:00PM','5:00PM','6:00PM','7:00PM']},
+  {id:'db1',n:'Smashers Badminton Academy Dwarka',s:'Badminton',c:'Delhi',a:'Dwarka',p:300,u:'hr',r:4.7,rv:289,ct:8,am:['AC','Shuttle','Coaching','Parking'],h:'5AM–10PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'db2',n:'Sportz Village Saket',s:'Badminton',c:'Delhi',a:'Saket',p:350,u:'hr',r:4.6,rv:234,ct:6,am:['AC','Shuttle','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'db3',n:'Noida Badminton Hub',s:'Badminton',c:'Delhi',a:'Noida',p:320,u:'hr',r:4.6,rv:312,ct:10,am:['AC','Shuttle','Coaching','Cafeteria'],h:'5AM–11PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'db4',n:'Gurgaon Badminton Club',s:'Badminton',c:'Delhi',a:'Gurgaon',p:400,u:'hr',r:4.7,rv:267,ct:8,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'df1',n:'Delhi Football Arena Saket',s:'Football',c:'Delhi',a:'Saket',p:1000,u:'hr',r:4.5,rv:367,ct:4,am:['Astroturf','Floodlights','Changing Room'],h:'6AM–11PM',f:1,sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'df2',n:'Gurgaon Turf City',s:'Football',c:'Delhi',a:'Gurgaon',p:1100,u:'hr',r:4.6,rv:389,ct:4,am:['Astroturf','Floodlights','Cafeteria'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'dc1',n:'Feroz Shah Kotla Cricket Academy',s:'Cricket',c:'Delhi',a:'Delhi Gate',p:1500,u:'hr',r:4.9,rv:567,ct:6,am:['Professional Nets','Coaching','Bowling Machine'],h:'6AM–7PM',f:1,sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  {id:'dc2',n:'Delhi Cricket Academy Rohini',s:'Cricket',c:'Delhi',a:'Rohini',p:600,u:'hr',r:4.5,rv:312,ct:8,am:['Coaching','Bowling Machine','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'dt1',n:'DLTA Tennis Complex',s:'Tennis',c:'Delhi',a:'RK Khanna',p:600,u:'hr',r:4.8,rv:345,ct:16,am:['Clay','Hard','Grass Court','Coaching'],h:'6AM–9PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM']},
+  {id:'dt2',n:'Net Masters Tennis Vasant Kunj',s:'Tennis',c:'Delhi',a:'Vasant Kunj',p:500,u:'hr',r:4.6,rv:201,ct:6,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'dw1',n:'Shyama Prasad Aquatic Centre',s:'Swimming',c:'Delhi',a:'Rohini',p:200,u:'session',r:4.4,rv:145,ct:2,am:['50m Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'bb1',n:'Shuttle Up Whitefield',s:'Badminton',c:'Bangalore',a:'Whitefield',p:320,u:'hr',r:4.8,rv:412,ct:10,am:['AC','Shuttle','Parking','Pro Shop'],h:'5AM–11PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'bb2',n:'Indiranagar Badminton Club',s:'Badminton',c:'Bangalore',a:'Indiranagar',p:350,u:'hr',r:4.7,rv:345,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bb3',n:'HSR Layout Sports Hub Badminton',s:'Badminton',c:'Bangalore',a:'HSR Layout',p:280,u:'hr',r:4.5,rv:198,ct:8,am:['AC','Shuttle','Parking'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bb4',n:'Koramangala Badminton Academy',s:'Badminton',c:'Bangalore',a:'Koramangala',p:330,u:'hr',r:4.6,rv:267,ct:6,am:['AC','Shuttle','Coaching','Parking'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bf1',n:'Koramangala Football Hub',s:'Football',c:'Bangalore',a:'Koramangala',p:1100,u:'hr',r:4.6,rv:534,ct:5,am:['Astroturf','Floodlights','Parking'],h:'6AM–11PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'bf2',n:'Whitefield Football Turf',s:'Football',c:'Bangalore',a:'Whitefield',p:1000,u:'hr',r:4.5,rv:312,ct:3,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'bc1',n:'KSCA Cricket Ground Bangalore',s:'Cricket',c:'Bangalore',a:'MG Road',p:2000,u:'hr',r:4.9,rv:456,ct:8,am:['International Standard','Coaching','Video Analysis'],h:'6AM–7PM',f:1,sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'bc2',n:'HSR Cricket Academy Bangalore',s:'Cricket',c:'Bangalore',a:'HSR Layout',p:700,u:'hr',r:4.5,rv:278,ct:4,am:['Coaching','Bowling Machine','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'bt1',n:'Baseline Tennis Indiranagar',s:'Tennis',c:'Bangalore',a:'Indiranagar',p:550,u:'hr',r:4.7,rv:189,ct:8,am:['Clay','Hard Court','Coaching'],h:'6AM–9PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM']},
+  {id:'bw1',n:'Koramangala Swimming Club',s:'Swimming',c:'Bangalore',a:'Koramangala',p:250,u:'session',r:4.5,rv:178,ct:2,am:['Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'pb1',n:'Rally Point Badminton Kothrud',s:'Badminton',c:'Pune',a:'Kothrud',p:280,u:'hr',r:4.6,rv:234,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pb2',n:'Balewadi Badminton Academy',s:'Badminton',c:'Pune',a:'Balewadi',p:300,u:'hr',r:4.7,rv:312,ct:10,am:['AC','Shuttle','Coaching','Cafeteria'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pb3',n:'Aundh Sports Arena Badminton',s:'Badminton',c:'Pune',a:'Aundh',p:260,u:'hr',r:4.4,rv:167,ct:4,am:['AC','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pf1',n:'Viman Nagar Football Turf',s:'Football',c:'Pune',a:'Viman Nagar',p:900,u:'hr',r:4.5,rv:312,ct:3,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pf2',n:'Hinjewadi Football Ground',s:'Football',c:'Pune',a:'Hinjewadi',p:850,u:'hr',r:4.4,rv:245,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pc1',n:'Pune Cricket Academy Aundh',s:'Cricket',c:'Pune',a:'Aundh',p:600,u:'hr',r:4.5,rv:234,ct:6,am:['Coaching','Bowling Machine','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'pt1',n:'Tennis Point Koregaon Park',s:'Tennis',c:'Pune',a:'Koregaon Park',p:500,u:'hr',r:4.6,rv:178,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'hsk1',n:'Pullela Gopichand Academy',s:'Badminton',c:'Hyderabad',a:'Gachibowli',p:800,u:'hr',r:5.0,rv:789,ct:12,am:['World Class','Coaching','AC','Video Analysis'],h:'5AM–9PM',f:1,sl:['5:00AM','6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'hb1',n:'Ace Badminton Gachibowli',s:'Badminton',c:'Hyderabad',a:'Gachibowli',p:300,u:'hr',r:4.7,rv:267,ct:8,am:['AC','Shuttle','Coaching'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'hb2',n:'HiTech Badminton Academy',s:'Badminton',c:'Hyderabad',a:'HITEC City',p:280,u:'hr',r:4.6,rv:234,ct:6,am:['AC','Shuttle','Coaching'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'hb3',n:'Jubilee Hills Badminton Club',s:'Badminton',c:'Hyderabad',a:'Jubilee Hills',p:320,u:'hr',r:4.5,rv:189,ct:4,am:['AC','Shuttle','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'hf1',n:'Gachibowli Stadium Turf',s:'Football',c:'Hyderabad',a:'Gachibowli',p:1000,u:'hr',r:4.5,rv:312,ct:3,am:['Astroturf','Floodlights'],h:'6AM–10PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'hc1',n:'HiTech Cricket Nets Hyderabad',s:'Cricket',c:'Hyderabad',a:'HITEC City',p:750,u:'hr',r:4.6,rv:198,ct:5,am:['Coaching','Bowling Machine','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'ht1',n:'LPCA Tennis Banjara Hills',s:'Tennis',c:'Hyderabad',a:'Banjara Hills',p:480,u:'hr',r:4.6,rv:156,ct:6,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'chb1',n:'Chennai Badminton Club Anna Nagar',s:'Badminton',c:'Chennai',a:'Anna Nagar',p:290,u:'hr',r:4.5,rv:178,ct:6,am:['AC','Shuttle','Parking'],h:'5:30AM–10PM',f:1,sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'chb2',n:'Velachery Sports Arena Badminton',s:'Badminton',c:'Chennai',a:'Velachery',p:270,u:'hr',r:4.5,rv:189,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'chf1',n:'Marina Football Turf Adyar',s:'Football',c:'Chennai',a:'Adyar',p:950,u:'hr',r:4.4,rv:289,ct:3,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'chc1',n:'Chennai Cricket Academy Chepauk',s:'Cricket',c:'Chennai',a:'Chepauk',p:1800,u:'hr',r:4.9,rv:567,ct:6,am:['International Nets','Coaching','Bowling Machine'],h:'6AM–7PM',f:1,sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  {id:'cht1',n:'SDAT Tennis Stadium Chennai',s:'Tennis',c:'Chennai',a:'Nungambakkam',p:450,u:'hr',r:4.7,rv:234,ct:12,am:['Clay','Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'kb1',n:'Park Street Badminton Club Kolkata',s:'Badminton',c:'Kolkata',a:'Park Street',p:250,u:'hr',r:4.5,rv:145,ct:4,am:['AC','Shuttle','Parking'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'kb2',n:'Salt Lake Badminton Academy',s:'Badminton',c:'Kolkata',a:'Salt Lake',p:280,u:'hr',r:4.6,rv:198,ct:8,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'kf1',n:'Salt Lake Football Ground Kolkata',s:'Football',c:'Kolkata',a:'Salt Lake',p:800,u:'hr',r:4.6,rv:356,ct:4,am:['Astroturf','Floodlights','Cafeteria'],h:'6AM–9PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'kc1',n:'Eden Gardens Practice Nets Kolkata',s:'Cricket',c:'Kolkata',a:'Maidan',p:1000,u:'hr',r:4.8,rv:456,ct:8,am:['Professional Nets','Coaching','Bowling Machine'],h:'6AM–7PM',f:1,sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  
+  // ─── PICKLEBALL — ALL CITIES ───
+  {id:'pk_mb1',n:'Smash Republic Pickleball Mumbai',s:'Pickleball',c:'Mumbai',a:'Andheri West',p:400,u:'hr',r:4.8,rv:234,ct:6,am:['Professional Courts','Coaching','AC','Equipment'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pk_mb2',n:'PicklePro Bandra',s:'Pickleball',c:'Mumbai',a:'Bandra West',p:350,u:'hr',r:4.7,rv:189,ct:4,am:['AC','Coaching','Equipment Rental'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_mb3',n:'The Pickle Yard Powai',s:'Pickleball',c:'Mumbai',a:'Powai',p:380,u:'hr',r:4.6,rv:145,ct:4,am:['AC','Coaching','Parking'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_mb4',n:'Ace Pickleball Lower Parel',s:'Pickleball',c:'Mumbai',a:'Lower Parel',p:420,u:'hr',r:4.7,rv:167,ct:6,am:['AC','Professional Courts','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pk_mb5',n:'Pickleball Station Malad',s:'Pickleball',c:'Mumbai',a:'Malad West',p:320,u:'hr',r:4.5,rv:112,ct:4,am:['AC','Equipment','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_db1',n:'Delhi Pickleball Club Vasant Kunj',s:'Pickleball',c:'Delhi',a:'Vasant Kunj',p:380,u:'hr',r:4.8,rv:267,ct:8,am:['AC','Professional Courts','Coaching','Parking'],h:'5AM–10PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pk_db2',n:'Noida Pickleball Arena',s:'Pickleball',c:'Delhi',a:'Noida Sector 62',p:350,u:'hr',r:4.6,rv:198,ct:6,am:['AC','Coaching','Equipment'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_db3',n:'Gurgaon Pickleball Hub',s:'Pickleball',c:'Delhi',a:'Gurgaon Sector 56',p:400,u:'hr',r:4.7,rv:223,ct:6,am:['AC','Professional Courts','Coaching'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pk_db4',n:'Capital Pickle Dwarka',s:'Pickleball',c:'Delhi',a:'Dwarka Sector 12',p:320,u:'hr',r:4.5,rv:134,ct:4,am:['AC','Coaching','Equipment'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'pk_bb1',n:'Bangalore Pickleball Academy Koramangala',s:'Pickleball',c:'Bangalore',a:'Koramangala',p:360,u:'hr',r:4.9,rv:312,ct:8,am:['AC','Professional Courts','Coaching','Video Analysis'],h:'5AM–10PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pk_bb2',n:'Pickle Nation Whitefield',s:'Pickleball',c:'Bangalore',a:'Whitefield',p:330,u:'hr',r:4.7,rv:189,ct:6,am:['AC','Coaching','Equipment'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_bb3',n:'HSR Pickleball Club',s:'Pickleball',c:'Bangalore',a:'HSR Layout',p:310,u:'hr',r:4.6,rv:145,ct:4,am:['AC','Coaching'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_pb1',n:'Pune Pickleball Club Kothrud',s:'Pickleball',c:'Pune',a:'Kothrud',p:300,u:'hr',r:4.6,rv:134,ct:4,am:['AC','Coaching','Equipment'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_hb1',n:'Hyderabad Pickleball Arena Gachibowli',s:'Pickleball',c:'Hyderabad',a:'Gachibowli',p:350,u:'hr',r:4.7,rv:178,ct:6,am:['AC','Professional Courts','Coaching'],h:'5AM–10PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_chb1',n:'Chennai Pickleball Club Anna Nagar',s:'Pickleball',c:'Chennai',a:'Anna Nagar',p:320,u:'hr',r:4.5,rv:112,ct:4,am:['AC','Coaching','Equipment'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pk_kb1',n:'Kolkata Pickleball Hub Salt Lake',s:'Pickleball',c:'Kolkata',a:'Salt Lake',p:280,u:'hr',r:4.5,rv:98,ct:4,am:['AC','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+
+  // ─── PADEL — ALL CITIES ───
+  {id:'pd_mb1',n:'Padel Republic Mumbai',s:'Padel',c:'Mumbai',a:'BKC',p:800,u:'hr',r:4.9,rv:289,ct:4,am:['Glass Courts','Professional','Coaching','AC','Parking'],h:'6AM–11PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_mb2',n:'Smash Padel Andheri',s:'Padel',c:'Mumbai',a:'Andheri West',p:700,u:'hr',r:4.7,rv:198,ct:2,am:['Glass Courts','AC','Coaching','Parking'],h:'6AM–11PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_mb3',n:'The Padel Club Juhu',s:'Padel',c:'Mumbai',a:'Juhu',p:750,u:'hr',r:4.8,rv:234,ct:3,am:['Glass Courts','AC','Coaching','Café'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','8:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_mb4',n:'Padel Point Powai',s:'Padel',c:'Mumbai',a:'Powai',p:650,u:'hr',r:4.6,rv:167,ct:2,am:['Glass Courts','Coaching','Parking'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_mb5',n:'Ace Padel Lower Parel',s:'Padel',c:'Mumbai',a:'Lower Parel',p:720,u:'hr',r:4.7,rv:189,ct:2,am:['Glass Courts','AC','Coaching'],h:'6AM–11PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_db1',n:'Delhi Padel Club Saket',s:'Padel',c:'Delhi',a:'Saket',p:750,u:'hr',r:4.8,rv:312,ct:4,am:['Glass Courts','Professional','AC','Coaching','Parking'],h:'5AM–11PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_db2',n:'Gurgaon Padel Arena',s:'Padel',c:'Delhi',a:'Gurgaon DLF Phase 5',p:800,u:'hr',r:4.8,rv:267,ct:3,am:['Glass Courts','AC','Coaching','Café','Parking'],h:'5:30AM–11PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_db3',n:'Noida Padel Club',s:'Padel',c:'Delhi',a:'Noida Sector 18',p:700,u:'hr',r:4.6,rv:198,ct:2,am:['Glass Courts','Coaching','Parking'],h:'5AM–11PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_db4',n:'Capital Padel Vasant Kunj',s:'Padel',c:'Delhi',a:'Vasant Kunj',p:720,u:'hr',r:4.7,rv:223,ct:2,am:['Glass Courts','AC','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_bb1',n:'Padel Arena Bangalore Indiranagar',s:'Padel',c:'Bangalore',a:'Indiranagar',p:700,u:'hr',r:4.8,rv:289,ct:4,am:['Glass Courts','Professional','AC','Coaching','Parking'],h:'5AM–11PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_bb2',n:'Smash Padel Whitefield',s:'Padel',c:'Bangalore',a:'Whitefield',p:650,u:'hr',r:4.7,rv:198,ct:2,am:['Glass Courts','Coaching','Parking'],h:'5AM–11PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_bb3',n:'Koramangala Padel Club',s:'Padel',c:'Bangalore',a:'Koramangala',p:680,u:'hr',r:4.7,rv:167,ct:2,am:['Glass Courts','AC','Coaching'],h:'5:30AM–11PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_pb1',n:'Pune Padel Club Baner',s:'Padel',c:'Pune',a:'Baner',p:650,u:'hr',r:4.7,rv:156,ct:2,am:['Glass Courts','Coaching','Parking'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_pb2',n:'Viman Nagar Padel',s:'Padel',c:'Pune',a:'Viman Nagar',p:620,u:'hr',r:4.6,rv:134,ct:2,am:['Glass Courts','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pd_hb1',n:'Hyderabad Padel Club Jubilee Hills',s:'Padel',c:'Hyderabad',a:'Jubilee Hills',p:700,u:'hr',r:4.8,rv:223,ct:3,am:['Glass Courts','AC','Coaching','Parking'],h:'5AM–11PM',f:1,sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM','9:00PM']},
+  {id:'pd_hb2',n:'Gachibowli Padel Arena',s:'Padel',c:'Hyderabad',a:'Gachibowli',p:650,u:'hr',r:4.7,rv:178,ct:2,am:['Glass Courts','Coaching','Parking'],h:'5AM–11PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_chb1',n:'Chennai Padel Club Nungambakkam',s:'Padel',c:'Chennai',a:'Nungambakkam',p:650,u:'hr',r:4.7,rv:156,ct:2,am:['Glass Courts','Coaching','Parking'],h:'6AM–10PM',f:1,sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pd_kb1',n:'Kolkata Padel Arena Park Street',s:'Padel',c:'Kolkata',a:'Park Street',p:600,u:'hr',r:4.6,rv:112,ct:2,am:['Glass Courts','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+
+  // ─── MORE MUMBAI VENUES ───
+  {id:'mb_ex1',n:'Juhu Beach Cricket Academy',s:'Cricket',c:'Mumbai',a:'Juhu',p:600,u:'hr',r:4.5,rv:189,ct:4,am:['Nets','Coaching','Bowling Machine'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','8:00AM','4:00PM','5:00PM']},
+  {id:'mb_ex2',n:'Kandivali Sports Complex Badminton',s:'Badminton',c:'Mumbai',a:'Kandivali East',p:260,u:'hr',r:4.4,rv:134,ct:6,am:['AC','Shuttle','Parking'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb_ex3',n:'Versova Football Turf',s:'Football',c:'Mumbai',a:'Versova',p:850,u:'hr',r:4.4,rv:156,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mb_ex4',n:'Chembur Sports Club Tennis',s:'Tennis',c:'Mumbai',a:'Chembur',p:480,u:'hr',r:4.5,rv:145,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'mb_ex5',n:'Mulund Badminton Academy',s:'Badminton',c:'Mumbai',a:'Mulund West',p:270,u:'hr',r:4.4,rv:112,ct:4,am:['AC','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb_ex6',n:'Santacruz Sports Hub Badminton',s:'Badminton',c:'Mumbai',a:'Santacruz West',p:290,u:'hr',r:4.5,rv:123,ct:4,am:['AC','Shuttle','Coaching'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb_ex7',n:'Dahisar Football Turf',s:'Football',c:'Mumbai',a:'Dahisar East',p:800,u:'hr',r:4.3,rv:98,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'mb_ex8',n:'Borivali Sports Complex Badminton',s:'Badminton',c:'Mumbai',a:'Borivali West',p:250,u:'hr',r:4.4,rv:167,ct:6,am:['AC','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'mb_ex9',n:'Vikhroli Swimming Academy',s:'Swimming',c:'Mumbai',a:'Vikhroli',p:200,u:'session',r:4.3,rv:89,ct:1,am:['Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'mb_ex10',n:'Ghatkopar Basketball Court',s:'Basketball',c:'Mumbai',a:'Ghatkopar East',p:400,u:'hr',r:4.4,rv:112,ct:2,am:['Indoor','AC'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+
+  // ─── MORE DELHI VENUES ───
+  {id:'db_ex1',n:'Lajpat Nagar Badminton Academy',s:'Badminton',c:'Delhi',a:'Lajpat Nagar',p:280,u:'hr',r:4.5,rv:156,ct:6,am:['AC','Shuttle','Coaching'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'db_ex2',n:'Pitampura Sports Complex',s:'Badminton',c:'Delhi',a:'Pitampura',p:260,u:'hr',r:4.4,rv:134,ct:6,am:['AC','Shuttle'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'db_ex3',n:'Janakpuri Football Turf',s:'Football',c:'Delhi',a:'Janakpuri',p:900,u:'hr',r:4.4,rv:145,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'db_ex4',n:'Mayur Vihar Cricket Academy',s:'Cricket',c:'Delhi',a:'Mayur Vihar',p:500,u:'hr',r:4.4,rv:123,ct:4,am:['Coaching','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'db_ex5',n:'Rajouri Garden Tennis Club',s:'Tennis',c:'Delhi',a:'Rajouri Garden',p:450,u:'hr',r:4.5,rv:134,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'db_ex6',n:'Faridabad Badminton Hub',s:'Badminton',c:'Delhi',a:'Faridabad',p:240,u:'hr',r:4.3,rv:98,ct:6,am:['AC','Shuttle'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'db_ex7',n:'Greater Noida Sports City',s:'Badminton',c:'Delhi',a:'Greater Noida',p:280,u:'hr',r:4.5,rv:167,ct:8,am:['AC','Shuttle','Coaching','Parking'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'db_ex8',n:'Karol Bagh Swimming Pool',s:'Swimming',c:'Delhi',a:'Karol Bagh',p:180,u:'session',r:4.3,rv:112,ct:2,am:['Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+
+  // ─── MORE BANGALORE VENUES ───
+  {id:'bb_ex1',n:'Marathahalli Badminton Hub',s:'Badminton',c:'Bangalore',a:'Marathahalli',p:300,u:'hr',r:4.6,rv:189,ct:8,am:['AC','Shuttle','Coaching','Parking'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bb_ex2',n:'JP Nagar Badminton Academy',s:'Badminton',c:'Bangalore',a:'JP Nagar',p:280,u:'hr',r:4.5,rv:156,ct:6,am:['AC','Shuttle','Coaching'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bb_ex3',n:'Bannerghatta Road Football Turf',s:'Football',c:'Bangalore',a:'Bannerghatta Road',p:950,u:'hr',r:4.4,rv:134,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'bb_ex4',n:'Sarjapur Road Cricket Academy',s:'Cricket',c:'Bangalore',a:'Sarjapur Road',p:600,u:'hr',r:4.5,rv:145,ct:4,am:['Coaching','Bowling Machine','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM','6:00PM']},
+  {id:'bb_ex5',n:'Jayanagar Swimming Club',s:'Swimming',c:'Bangalore',a:'Jayanagar',p:220,u:'session',r:4.4,rv:123,ct:1,am:['Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'bb_ex6',n:'Yelahanka Badminton Sports',s:'Badminton',c:'Bangalore',a:'Yelahanka',p:260,u:'hr',r:4.4,rv:112,ct:6,am:['AC','Shuttle'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'bb_ex7',n:'Hebbal Tennis Academy',s:'Tennis',c:'Bangalore',a:'Hebbal',p:480,u:'hr',r:4.5,rv:134,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+
+  // ─── MORE PUNE VENUES ───
+  {id:'pb_ex1',n:'Wakad Badminton Club',s:'Badminton',c:'Pune',a:'Wakad',p:260,u:'hr',r:4.5,rv:145,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'pb_ex2',n:'Baner Football Turf',s:'Football',c:'Pune',a:'Baner',p:850,u:'hr',r:4.5,rv:189,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'pb_ex3',n:'Pimpri Cricket Academy',s:'Cricket',c:'Pune',a:'Pimpri Chinchwad',p:500,u:'hr',r:4.4,rv:123,ct:4,am:['Coaching','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'pb_ex4',n:'Kalyani Nagar Tennis Club',s:'Tennis',c:'Pune',a:'Kalyani Nagar',p:480,u:'hr',r:4.6,rv:134,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'pb_ex5',n:'Hadapsar Badminton Academy',s:'Badminton',c:'Pune',a:'Hadapsar',p:240,u:'hr',r:4.4,rv:112,ct:4,am:['AC','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+
+  // ─── MORE HYDERABAD ───
+  {id:'hb_ex1',n:'Kondapur Badminton Academy',s:'Badminton',c:'Hyderabad',a:'Kondapur',p:270,u:'hr',r:4.5,rv:156,ct:6,am:['AC','Shuttle','Coaching'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'hb_ex2',n:'Madhapur Football Turf',s:'Football',c:'Hyderabad',a:'Madhapur',p:900,u:'hr',r:4.4,rv:134,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'hb_ex3',n:'Kukatpally Cricket Nets',s:'Cricket',c:'Hyderabad',a:'Kukatpally',p:600,u:'hr',r:4.4,rv:112,ct:4,am:['Coaching','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'hb_ex4',n:'Ameerpet Tennis Club',s:'Tennis',c:'Hyderabad',a:'Ameerpet',p:420,u:'hr',r:4.5,rv:123,ct:4,am:['Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'hb_ex5',n:'LB Nagar Badminton Hub',s:'Badminton',c:'Hyderabad',a:'LB Nagar',p:250,u:'hr',r:4.3,rv:98,ct:4,am:['AC','Shuttle'],h:'5AM–10PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+
+  // ─── MORE CHENNAI ───
+  {id:'chb_ex1',n:'Porur Badminton Academy',s:'Badminton',c:'Chennai',a:'Porur',p:260,u:'hr',r:4.5,rv:134,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'chb_ex2',n:'Perungudi Football Turf',s:'Football',c:'Chennai',a:'Perungudi',p:900,u:'hr',r:4.4,rv:112,ct:2,am:['Astroturf','Floodlights'],h:'6AM–11PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'chb_ex3',n:'Ambattur Cricket Academy',s:'Cricket',c:'Chennai',a:'Ambattur',p:500,u:'hr',r:4.4,rv:123,ct:4,am:['Coaching','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'chb_ex4',n:'Kilpauk Swimming Pool',s:'Swimming',c:'Chennai',a:'Kilpauk',p:180,u:'session',r:4.3,rv:89,ct:1,am:['Pool','Coaching'],h:'5AM–9PM',sl:['5:00AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'chb_ex5',n:'Thoraipakkam Badminton Hub',s:'Badminton',c:'Chennai',a:'Thoraipakkam',p:270,u:'hr',r:4.5,rv:112,ct:4,am:['AC','Shuttle'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM']},
+
+  // ─── MORE KOLKATA ───
+  {id:'kb_ex1',n:'New Town Badminton Academy',s:'Badminton',c:'Kolkata',a:'New Town',p:260,u:'hr',r:4.5,rv:123,ct:6,am:['AC','Shuttle','Coaching'],h:'5:30AM–10PM',sl:['5:30AM','6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+  {id:'kb_ex2',n:'Behala Football Turf',s:'Football',c:'Kolkata',a:'Behala',p:700,u:'hr',r:4.3,rv:98,ct:2,am:['Astroturf','Floodlights'],h:'6AM–10PM',sl:['6:00AM','5:00PM','6:00PM','7:00PM','8:00PM']},
+  {id:'kb_ex3',n:'Dum Dum Cricket Academy',s:'Cricket',c:'Kolkata',a:'Dum Dum',p:450,u:'hr',r:4.4,rv:112,ct:4,am:['Coaching','Nets'],h:'5:30AM–8PM',sl:['6:00AM','7:00AM','4:00PM','5:00PM']},
+  {id:'kb_ex4',n:'Ballygunge Tennis Club',s:'Tennis',c:'Kolkata',a:'Ballygunge',p:380,u:'hr',r:4.5,rv:123,ct:4,am:['Clay Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+  {id:'kb_ex5',n:'Howrah Badminton Hub',s:'Badminton',c:'Kolkata',a:'Howrah',p:220,u:'hr',r:4.3,rv:89,ct:4,am:['AC','Shuttle'],h:'6AM–10PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM','7:00PM']},
+
+  {id:'kt1',n:'South Club Tennis Kolkata',s:'Tennis',c:'Kolkata',a:'Park Street',p:400,u:'hr',r:4.6,rv:178,ct:8,am:['Clay Court','Hard Court','Coaching'],h:'6AM–9PM',sl:['6:00AM','7:00AM','5:00PM','6:00PM']},
+];
+const T=[
+  {id:'t1',n:'Mumbai Open Badminton Championship',s:'Badminton',c:'Mumbai',v:'Shivaji Park Indoor Stadium',a:'Dadar',d:'Jun 14–16, 2025',cats:['U-14','U-18','Open Men','Open Women'],fee:800,prize:'₹1,50,000',spots:64,left:18,org:'Mumbai Badminton Association',f:1},
+  {id:'t2',n:'Maharashtra State Badminton Tournament',s:'Badminton',c:'Mumbai',v:'Sports Complex Worli',a:'Worli',d:'Jun 28–30, 2025',cats:['U-14','U-17','U-19','Open'],fee:1000,prize:'₹3,00,000',spots:128,left:34,org:'Badminton Association of Maharashtra',f:1},
+  {id:'t3',n:'Delhi Open Badminton',s:'Badminton',c:'Delhi',v:'Siri Fort Sports Complex',a:'Khelgaon',d:'Jul 5–7, 2025',cats:['U-15','U-18','Open'],fee:900,prize:'₹2,00,000',spots:96,left:41,org:'Badminton Association of Delhi'},
+  {id:'t4',n:'Bangalore Premier Badminton League',s:'Badminton',c:'Bangalore',v:'Kanteerava Indoor Stadium',a:'MG Road',d:'Jul 12–14, 2025',cats:['Open Men','Open Women','Mixed'],fee:1200,prize:'₹2,50,000',spots:64,left:22,org:'Karnataka Badminton Association',f:1},
+  {id:'t5',n:'All India Table Tennis Invitational',s:'Table Tennis',c:'Mumbai',v:'NSCI Dome Worli',a:'Worli',d:'Jul 19–20, 2025',cats:['U-14','U-18','Open'],fee:600,prize:'₹60,000',spots:128,left:45,org:'Table Tennis Federation of India'},
+  {id:'t6',n:'Hyderabad Open Tennis Championship',s:'Tennis',c:'Hyderabad',v:'LPCA Tennis Complex',a:'Banjara Hills',d:'Jul 26–28, 2025',cats:['U-18','Open Men','Open Women'],fee:1500,prize:'₹2,00,000',spots:48,left:19,org:'Telangana State Tennis Association',f:1},
+  {id:'t7',n:'Delhi Football 5s Super Cup',s:'Football',c:'Delhi',v:'Saket Sports Complex',a:'Saket',d:'Aug 2–3, 2025',cats:['U-16 Teams','Open Teams'],fee:2500,prize:'₹50,000',spots:24,left:8,org:'Delhi Football Federation'},
+  {id:'t8',n:'Powai Box Cricket Premier',s:'Cricket',c:'Mumbai',v:'Powai Sports Hub',a:'Powai',d:'Aug 9–10, 2025',cats:['Open Teams'],fee:3500,prize:'₹75,000',spots:16,left:4,org:'Powai Cricket Club',f:1},
+  {id:'t9',n:'Bangalore Tennis Open',s:'Tennis',c:'Bangalore',v:'KSTA Tennis Complex',a:'Cubbon Park',d:'Aug 16–18, 2025',cats:['U-18','Open Men','Open Women'],fee:1200,prize:'₹1,50,000',spots:48,left:21,org:'Karnataka Tennis Association'},
+  {id:'t10',n:'Chennai Cricket League Cup',s:'Cricket',c:'Chennai',v:'MA Chidambaram Ground B',a:'Chepauk',d:'Aug 23–24, 2025',cats:['Open Teams'],fee:4000,prize:'₹1,25,000',spots:16,left:6,org:'Tamil Nadu Cricket Association'},
+  {id:'t11',n:'Kolkata Football Premier',s:'Football',c:'Kolkata',v:'Salt Lake Stadium',a:'Salt Lake',d:'Sep 6–7, 2025',cats:['Open Teams'],fee:3000,prize:'₹1,00,000',spots:20,left:9,org:'Indian Football Association'},
+  {id:'t12',n:'National Squash Championship',s:'Squash',c:'Mumbai',v:'Squash Central Lower Parel',a:'Lower Parel',d:'Sep 13–14, 2025',cats:['U-18','Open Men','Open Women'],fee:1500,prize:'₹90,000',spots:32,left:14,org:'Squash Rackets Federation of India'},
+  {id:'t13',n:'Pune Badminton Grand Prix',s:'Badminton',c:'Pune',v:'Balewadi Sports Complex',a:'Balewadi',d:'Sep 20–21, 2025',cats:['Open Men','Open Women','Mixed Doubles'],fee:900,prize:'₹80,000',spots:64,left:31,org:'Pune Badminton Association'},
+  {id:'t14',n:'Hyderabad Football Championship',s:'Football',c:'Hyderabad',v:'Gachibowli Stadium',a:'Gachibowli',d:'Sep 27–28, 2025',cats:['U-18','Open Teams'],fee:3000,prize:'₹1,00,000',spots:20,left:7,org:'Hyderabad Football Association'},
+  {id:'t15',n:'Delhi Swimming State Championships',s:'Swimming',c:'Delhi',v:'SPM Pool Rohini',a:'Rohini',d:'Oct 4–5, 2025',cats:['U-12','U-16','Open'],fee:500,prize:'₹40,000',spots:200,left:87,org:'Delhi Amateur Swimming Association'},
+  {id:'t16',n:'Bangalore All Sport Fest',s:'Multi-Sport',c:'Bangalore',v:'Kanteerava Stadium',a:'MG Road',d:'Oct 11–12, 2025',cats:['All Sports Open'],fee:1000,prize:'₹3,00,000',spots:500,left:234,org:'Karnataka Sports Authority',f:1},
+  {id:'t17',n:'Chennai Open Badminton',s:'Badminton',c:'Chennai',v:'JN Indoor Stadium',a:'Periamet',d:'Oct 25–26, 2025',cats:['U-15','U-18','Open'],fee:800,prize:'₹1,00,000',spots:96,left:45,org:'Tamil Nadu Badminton Association'},
+  {id:'t18',n:'Kolkata Cricket T10 Cup',s:'Cricket',c:'Kolkata',v:'Eden Gardens Practice Ground',a:'Maidan',d:'Nov 1–2, 2025',cats:['Open Teams'],fee:5000,prize:'₹2,00,000',spots:16,left:5,org:'Cricket Association Bengal',f:1},
+  {id:'t19',n:'Gurgaon Football 7s Championship',s:'Football',c:'Delhi',v:'DLF Turf Ground',a:'Gurgaon',d:'Nov 8–9, 2025',cats:['Corporate Teams','Open Teams'],fee:4000,prize:'₹80,000',spots:20,left:11,org:'Gurgaon Sports Club'},
+  
+  {id:'tp1',n:'Mumbai Pickleball Open',s:'Pickleball',c:'Mumbai',v:'Smash Republic Powai',a:'Powai',d:'Jul 6–7, 2025',cats:['Beginners','Intermediate','Advanced','Mixed Doubles'],fee:800,prize:'₹80,000',spots:64,left:22,org:'Mumbai Pickleball Association',f:1},
+  {id:'tp2',n:'Delhi Pickleball Championship',s:'Pickleball',c:'Delhi',v:'Delhi Pickleball Club',a:'Vasant Kunj',d:'Jul 19–20, 2025',cats:['Open Men','Open Women','Mixed'],fee:900,prize:'₹1,00,000',spots:64,left:31,org:'Delhi Pickleball Federation'},
+  {id:'tp3',n:'Bangalore Pickleball Premier',s:'Pickleball',c:'Bangalore',v:'Bangalore Pickleball Academy',a:'Koramangala',d:'Aug 3–4, 2025',cats:['Beginners','Open','Mixed Doubles'],fee:1000,prize:'₹1,20,000',spots:64,left:18,org:'Karnataka Pickleball Association',f:1},
+  {id:'tp4',n:'All India Pickleball Masters',s:'Pickleball',c:'Mumbai',v:'NSCI Dome Worli',a:'Worli',d:'Sep 6–7, 2025',cats:['Open Men','Open Women','Mixed','35+'],fee:1500,prize:'₹3,00,000',spots:128,left:45,org:'Pickleball Federation of India',f:1},
+  {id:'tp5',n:'Hyderabad Pickleball Open',s:'Pickleball',c:'Hyderabad',v:'Hyderabad Pickleball Arena',a:'Gachibowli',d:'Oct 4–5, 2025',cats:['Open','Mixed','Beginners'],fee:800,prize:'₹75,000',spots:64,left:28,org:'Telangana Pickleball Association'},
+  {id:'tpd1',n:'Mumbai Padel Open',s:'Padel',c:'Mumbai',v:'Padel Republic BKC',a:'BKC',d:'Jul 12–13, 2025',cats:['Open Men','Open Women','Mixed Doubles'],fee:1500,prize:'₹2,00,000',spots:32,left:12,org:'Mumbai Padel Club',f:1},
+  {id:'tpd2',n:'Gurgaon Padel Championship',s:'Padel',c:'Delhi',v:'Gurgaon Padel Arena',a:'Gurgaon',d:'Jul 26–27, 2025',cats:['Open Men','Open Women','Mixed'],fee:1800,prize:'₹2,50,000',spots:32,left:9,org:'Delhi Padel Federation',f:1},
+  {id:'tpd3',n:'Bangalore Padel League',s:'Padel',c:'Bangalore',v:'Padel Arena Indiranagar',a:'Indiranagar',d:'Aug 9–10, 2025',cats:['Open','Mixed Doubles'],fee:1600,prize:'₹2,00,000',spots:32,left:14,org:'Karnataka Padel Association'},
+  {id:'tpd4',n:'India Padel Masters',s:'Padel',c:'Mumbai',v:'The Padel Club Juhu',a:'Juhu',d:'Oct 18–19, 2025',cats:['Open Men','Open Women','Mixed','Corporate'],fee:2500,prize:'₹5,00,000',spots:48,left:21,org:'Padel Federation of India',f:1},
+  {id:'tpd5',n:'Hyderabad Padel Open',s:'Padel',c:'Hyderabad',v:'Hyderabad Padel Club',a:'Jubilee Hills',d:'Nov 1–2, 2025',cats:['Open','Mixed Doubles'],fee:1500,prize:'₹1,50,000',spots:32,left:16,org:'Telangana Padel Association'},
+
+  {id:'t20',n:'Mumbai Marathon Relay Cup',s:'Athletics',c:'Mumbai',v:'MMRDA Grounds BKC',a:'BKC',d:'Nov 15, 2025',cats:['Teams of 4','Individual'],fee:800,prize:'₹60,000',spots:200,left:89,org:'Athletics Federation Maharashtra'},
+];
+
+let view='all',sport='',selItem=null,selSlot=null,selDate=null,isTour=false,curPrice=0;
+const pf=p=>Math.round(p*FEE/100);
+const tot=p=>p+pf(p);
+const st=r=>'★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r));
+function emo2(s){return emo[s]||'🏅'}
+
+function applyFilters(){
+  const city=document.getElementById('cityFilter').value;
+  const sp=document.getElementById('sportFilter').value||sport;
+  const price=document.getElementById('priceFilter').value;
+  const q=document.getElementById('searchInput').value.toLowerCase();
+  let venues=V.filter(v=>{
+    if(city&&v.c!==city)return false;
+    if(sp&&v.s!==sp)return false;
+    if(price){const p=parseInt(price);if(p===9999&&v.p<=1000)return false;if(p!==9999&&v.p>p)return false;}
+    if(q&&!v.n.toLowerCase().includes(q)&&!v.a.toLowerCase().includes(q)&&!v.c.toLowerCase().includes(q))return false;
+    if(view==='featured'&&!v.f)return false;
+    return true;
+  });
+  let tours=T.filter(t=>{
+    if(city&&t.c!==city)return false;
+    if(sp&&t.s!==sp)return false;
+    if(q&&!t.n.toLowerCase().includes(q)&&!t.c.toLowerCase().includes(q))return false;
+    if(view==='featured'&&!t.f)return false;
+    return true;
+  });
+  render(venues,tours);
+}
+
+function setView(v,btn){
+  view=v;
+  document.querySelectorAll('#btnAll,#btnFeat,#btnT').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+function setSport(s,btn){
+  sport=s;
+  document.querySelectorAll('.s-tab').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sportFilter').value=s;
+  applyFilters();
+}
+function clearAll(){
+  ['cityFilter','sportFilter','priceFilter'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('searchInput').value='';
+  sport='';view='all';
+  document.querySelectorAll('.s-tab').forEach((b,i)=>b.classList.toggle('active',i===0));
+  document.getElementById('btnAll').classList.add('active');
+  document.getElementById('btnFeat').classList.remove('active');
+  document.getElementById('btnT').classList.remove('active');
+  applyFilters();
+}
+
+function render(venues,tours){
+  const col=document.getElementById('listingsCol');
+  const total_count=(view==='tournaments'?0:venues.length)+tours.length;
+  document.getElementById('rInfo').textContent=total_count+' results';
+  let html='';
+  if(view!=='tournaments'){
+    const feat=venues.filter(v=>v.f),rest=venues.filter(v=>!v.f);
+    if(feat.length){html+=`<div class="list-section-head"><h2>⭐ Featured Venues</h2><span class="count">${feat.length} venues</span></div>`;html+=feat.map(vCard).join('');}
+    if(rest.length){if(feat.length)html+='<div class="list-divider"></div>';html+=`<div class="list-section-head"><h2>All Venues</h2><span class="count">${rest.length} venues</span></div>`;html+=rest.map(vCard).join('');}
+  }
+  if(tours.length){
+    if(view!=='tournaments'&&venues.length)html+='<div class="list-divider"></div>';
+    const featT=tours.filter(t=>t.f),restT=tours.filter(t=>!t.f);
+    html+=`<div class="list-section-head"><h2>🏆 Tournaments</h2><span class="count">${tours.length} events</span></div>`;
+    html+=featT.map(tCard).join('');html+=restT.map(tCard).join('');
+  } else if(view==='all'&&!sport){
+    const showT=T.slice(0,5);
+    html+='<div class="list-divider"></div><div class="list-section-head"><h2>🏆 Upcoming Tournaments</h2><span class="count">'+T.length+' events total</span></div>';
+    html+=showT.map(tCard).join('');
+    html+=`<div style="text-align:center;padding:14px 0"><button class="f-btn active" style="padding:11px 24px" onclick="setView('tournaments',document.getElementById('btnT'))">View All ${T.length} Tournaments →</button></div>`;
+  }
+  if(!html)html='<div class="empty-state"><div class="ei">🔍</div><p>No results. Try clearing your filters.</p></div>';
+  col.innerHTML=html;
+}
+
+function vCard(v){
+  return`<div class="venue-card${v.f?' feat':''}" onclick="pickVenue('${v.id}')">
+    <div class="vc-sport${v.f?' feat-col':''}"><div class="ve">${emo2(v.s)}</div><div class="vs">${v.s}</div></div>
+    <div class="vc-body">
+      <div class="vc-top">${v.f?'<span class="feat-tag">Featured</span>':''}<div class="vc-name">${v.n}</div></div>
+      <div class="vc-loc">📍 ${v.a}, ${v.c} · ${v.ct} ${v.s==='Swimming'?'Pools':v.s==='Football'?'Turfs':'Courts'}</div>
+      <div class="vc-tags">${v.am.slice(0,4).map(a=>`<span class="vc-tag">${a}</span>`).join('')}</div>
+      <div class="vc-meta"><div class="vc-rating" style="display:flex;align-items:center;gap:4px"><span class="vc-stars">${st(v.r)}</span><span class="vc-rn">${v.r}</span><span class="vc-rc">(${v.rv})</span></div><span class="vc-hrs">⏰ ${v.h}</span></div>
+    </div>
+    <div class="vc-price-col">
+      <div><div class="vcp">₹${v.p.toLocaleString()}<span class="vcpu">/${v.u}</span></div></div>
+      <button class="book-btn">Book →</button>
+    </div>
+  </div>`;
+}
+
+function tCard(t){
+  const spill=(t.left/t.spots)<0.3;
+  return`<div class="t-card${t.f?' feat':''}" onclick="pickTournament('${t.id}')">
+    <div class="tc-sport${t.f?' feat-col':''}"><div class="te">${emo2(t.s)}</div><div class="ts">${t.s}</div></div>
+    <div class="tc-body">
+      <div class="tc-badges"><span class="tc-badge t-type">Tournament</span>${t.f?'<span class="tc-badge t-feat">Featured</span>':''}</div>
+      <div class="tc-name">${t.n}</div>
+      <div class="tc-meta"><span>📅 ${t.d}</span><span>📍 ${t.v}, ${t.c}</span><span>🏢 ${t.org}</span></div>
+      <div class="tc-cats">${t.cats.map(c=>`<span class="tc-cat">${c}</span>`).join('')}</div>
+    </div>
+    <div class="tc-price-col">
+      <div><div class="tcp-prize">${t.prize}<span class="tcp-prize-l">Prize Pool</span></div><div class="tcp-entry">₹${t.fee.toLocaleString()}<span class="tcp-unit">entry fee</span></div><div class="spots-pill ${spill?'sp-low':'sp-ok'}">${t.left} spots left</div></div>
+      <button class="reg-btn">Register →</button>
+    </div>
+  </div>`;
+}
+
+function pickVenue(id){
+  const v=V.find(x=>x.id===id);if(!v)return;
+  selItem=v;isTour=false;curPrice=v.p;selSlot=null;
+  document.getElementById('emptyPanel').style.display='none';
+  document.getElementById('activePanel').style.display='block';
+  document.getElementById('bpBadge').textContent=v.s+' · Court Booking';
+  document.getElementById('bpName').textContent=v.n;
+  document.getElementById('bpLoc').textContent='📍 '+v.a+', '+v.c;
+  document.getElementById('dateLabel').textContent='Select Date';
+  document.getElementById('slotLbl').textContent='Available Slots';
+  document.getElementById('pbLbl').textContent='Court Fee (1 hr)';
+  buildDates(false);buildSlots(v.sl);updatePB();
+  document.getElementById('activePanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function pickTournament(id){
+  const t=T.find(x=>x.id===id);if(!t)return;
+  selItem=t;isTour=true;curPrice=t.fee;selSlot=t.cats[0];
+  document.getElementById('emptyPanel').style.display='none';
+  document.getElementById('activePanel').style.display='block';
+  document.getElementById('bpBadge').textContent='🏆 Tournament Registration';
+  document.getElementById('bpName').textContent=t.n;
+  document.getElementById('bpLoc').textContent='📍 '+t.v+' · '+t.d;
+  document.getElementById('dateLabel').textContent='';
+  document.getElementById('slotLbl').textContent='Select Category';
+  document.getElementById('pbLbl').textContent='Registration Fee';
+  document.getElementById('dateRow').innerHTML='';
+  document.getElementById('slotsGrid').innerHTML=t.cats.map((c,i)=>`<button class="slot-b${i===0?' sel':''}" onclick="pickCat(this,'${c}')" style="grid-column:span ${t.cats.length<=2?2:1}">${c}</button>`).join('');
+  updatePB();
+  document.getElementById('activePanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+function buildDates(hide){
+  const row=document.getElementById('dateRow');
+  if(hide){row.innerHTML='';return;}
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  row.innerHTML='';
+  for(let i=0;i<7;i++){
+    const d=new Date();d.setDate(d.getDate()+i);
+    const btn=document.createElement('button');
+    btn.className='d-btn'+(i===0?' active':'');
+    btn.innerHTML=`<span class="dd">${i===0?'Today':days[d.getDay()]}</span><span class="dn">${d.getDate()} ${months[d.getMonth()]}</span>`;
+    btn.onclick=()=>{document.querySelectorAll('.d-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');selDate=d.toDateString();};
+    row.appendChild(btn);
+    if(i===0)selDate=d.toDateString();
+  }
+}
+
+function buildSlots(slots){
+  document.getElementById('slotsGrid').innerHTML=slots.map((s,i)=>{
+    const bk=BOOKED.includes(i);
+    return`<button class="slot-b${bk?' booked':''}" ${bk?'disabled':''} onclick="pickSlot(this,'${s}')">${s}</button>`;
+  }).join('');
+}
+
+function pickSlot(btn,slot){document.querySelectorAll('.slot-b').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');selSlot=slot;}
+function pickCat(btn,cat){document.querySelectorAll('.slot-b').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');selSlot=cat;}
+
+function updatePB(){
+  const f=pf(curPrice),t=tot(curPrice);
+  document.getElementById('pbBase').textContent='₹'+curPrice.toLocaleString();
+  document.getElementById('pbFee').textContent='₹'+f.toLocaleString();
+  document.getElementById('pbTotal').textContent='₹'+t.toLocaleString();
+}
+
+function pay(){
+  const name=document.getElementById('pName').value.trim();
+  const phone=document.getElementById('pPhone').value.trim();
+  const email=document.getElementById('pEmail').value.trim();
+  if(!name||!phone||!email){alert('Please fill in your name, mobile and email.');return;}
+  if(!selItem){alert('Please select a venue or tournament.');return;}
+  if(!isTour&&!selSlot){alert('Please select a time slot.');return;}
+  const amt=tot(curPrice)*100;
+  const desc=isTour?selItem.n+' · '+selSlot:selItem.n+' · '+selSlot+' · '+(selDate||'');
+  const opts={
+    key:'rzp_test_Sktp03hs6SLL53',
+    amount:amt,currency:'INR',
+    name:'Play Marketplace',
+    description:desc,
+    handler:function(){
+      const ref='PLAY-'+(isTour?'T':'C')+'-'+Date.now().toString(36).toUpperCase();
+      document.getElementById('mIco').textContent=isTour?'🏆':'✅';
+      document.getElementById('mTitle').textContent=isTour?'REGISTERED!':'BOOKING CONFIRMED!';
+      document.getElementById('mVen').textContent=selItem.n;
+      document.getElementById('mRef').textContent='REF: '+ref;
+      document.getElementById('mDet').textContent=isTour?'Category: '+selSlot:'Slot: '+selSlot+' · '+(selDate||'');
+      document.getElementById('mNote').textContent=isTour?'Organiser will contact you with event details.':'Show QR at venue. Confirmation sent to email & WhatsApp.';
+      document.getElementById('modal').classList.add('show');
+    },
+    prefill:{name,email,contact:phone},
+    notes:{venue:selItem.n,city:selItem.c,slot:selSlot||'',platform_fee_pct:'15%',platform_fee_amt:'₹'+pf(curPrice),type:isTour?'Tournament':'Court'},
+    theme:{color:'#ff4d1c'}
+  };
+  new Razorpay(opts).open();
+}
+
+applyFilters();
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a,select,input').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>

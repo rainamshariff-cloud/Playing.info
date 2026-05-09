@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Leagues — Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#0d0d0d;--white:#fff;--off:#f7f5f2;--lime:#a8e000;--lime-d:#7ab800;--orange:#ff4d1c;--orange-d:#e8431a;--grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;--fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace}
+    html{scroll-behavior:smooth}body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.1em;color:var(--black);text-decoration:none}.nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}.nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}.nav-links a:hover,.nav-links a.active{color:var(--orange)}
+    .nav-cta{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:10px 22px;border:none;cursor:none;transition:background .2s;text-decoration:none;display:inline-block}.nav-cta:hover{background:var(--orange)}
+
+    .page-hero{padding:110px 48px 56px;background:var(--lime);border-bottom:1.5px solid var(--black)}
+    .page-hero .tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(0,0,0,.45);margin-bottom:10px}
+    .page-hero h1{font-family:var(--fd);font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.03em;color:var(--black)}
+    .page-hero h1 span{-webkit-text-stroke:2px var(--black);color:transparent}
+    .page-hero p{font-size:.95rem;color:rgba(0,0,0,.55);font-weight:300;margin-top:14px;max-width:500px}
+
+    .leagues-section{padding:60px 48px 80px}
+    .leagues-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:0}
+
+    .league-card{background:var(--off);border:1px solid var(--mid);padding:0;overflow:hidden;cursor:none;transition:all .3s}
+    .league-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);transform:translateY(-4px)}
+    .league-card-top{padding:36px;border-bottom:1px solid var(--mid);position:relative}
+    .league-emoji{font-size:3rem;margin-bottom:16px;display:block}
+    .league-sport{font-family:var(--fm);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .league-name{font-family:var(--fd);font-size:1.8rem;letter-spacing:.04em;color:var(--black);line-height:1.05;margin-bottom:12px}
+    .league-meta{display:flex;flex-direction:column;gap:6px}
+    .league-meta span{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:8px}
+    .league-card-bot{padding:24px 36px;display:flex;align-items:center;justify-content:space-between;background:var(--white)}
+    .league-fee{font-family:var(--fd);font-size:1.8rem;color:var(--black)}
+    .league-fee small{font-family:var(--fm);font-size:.55rem;color:var(--muted);font-weight:normal;letter-spacing:.1em;display:block}
+    .join-btn{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:12px 24px;border:none;cursor:none;transition:background .2s}
+    .join-btn:hover{background:var(--orange)}
+    .teams-bar{height:4px;background:var(--mid);position:relative}
+    .teams-fill{height:100%;background:var(--lime-d);transition:width .6s ease}
+    .teams-label{font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 36px;background:var(--white)}
+
+    /* UPCOMING LEAGUES BAND */
+    .upcoming-band{background:var(--black);padding:60px 48px}
+    .upcoming-band h2{font-family:var(--fd);font-size:clamp(2rem,4vw,3rem);color:var(--white);letter-spacing:.05em;margin-bottom:32px}
+    .upcoming-list{display:flex;flex-direction:column;gap:2px}
+    .upcoming-item{background:#1a1a1a;padding:24px 32px;display:flex;align-items:center;gap:24px;border:1px solid #2a2a2a;cursor:none;transition:background .2s}
+    .upcoming-item:hover{background:#222}
+    .upcoming-item .u-emoji{font-size:2rem;flex-shrink:0}
+    .upcoming-item .u-info{flex:1}
+    .upcoming-item .u-name{font-family:var(--fd);font-size:1.3rem;letter-spacing:.04em;color:var(--white);margin-bottom:4px}
+    .upcoming-item .u-sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;gap:16px}
+    .upcoming-item .u-fee{font-family:var(--fd);font-size:1.3rem;color:var(--lime);flex-shrink:0}
+    .upcoming-item .notify-btn{background:transparent;color:var(--lime);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:8px 18px;border:1px solid var(--lime);cursor:none;transition:all .2s;flex-shrink:0}
+    .upcoming-item .notify-btn:hover{background:var(--lime);color:var(--black)}
+
+    /* JOIN MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:1000;display:none;align-items:center;justify-content:center}
+    .modal-overlay.show{display:flex}
+    .modal{background:var(--white);padding:48px;max-width:480px;width:90%;position:relative}
+    .modal-close-x{position:absolute;top:16px;right:20px;background:none;border:none;font-size:1.5rem;cursor:none;color:var(--muted)}
+    .modal h2{font-family:var(--fd);font-size:1.8rem;letter-spacing:.05em;margin-bottom:6px}
+    .modal .m-sub{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:24px}
+    .form-field{margin-bottom:12px}
+    .form-field label{font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:5px}
+    .form-field input,.form-field select{width:100%;padding:11px 14px;border:1.5px solid var(--mid);background:var(--white);font-family:var(--fb);font-size:.88rem;color:var(--text);outline:none;transition:border-color .2s;cursor:none}
+    .form-field input:focus,.form-field select:focus{border-color:var(--orange)}
+    .summary-box{background:var(--off);border:1px solid var(--mid);padding:18px;margin:18px 0}
+    .sum-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--mid)}
+    .sum-row:last-child{border-bottom:none;padding-top:10px}
+    .sum-l{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .sum-r{font-family:var(--fm);font-size:.62rem;font-weight:700;color:var(--text)}
+    .sum-total .sum-r{color:var(--orange)}
+    .pay-btn{width:100%;background:var(--orange);color:var(--white);font-family:var(--fd);font-size:1.3rem;letter-spacing:.1em;padding:16px;border:none;cursor:none;transition:background .2s;margin-top:4px}
+    .pay-btn:hover{background:var(--orange-d)}
+    .secure-note{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:8px}
+    .success-inner{text-align:center;padding:8px}
+    .success-inner .icon{font-size:3.5rem;margin-bottom:16px}
+    .success-inner h2{font-family:var(--fd);font-size:2rem;margin-bottom:10px}
+    .success-inner p{font-size:.86rem;color:var(--muted);line-height:1.7}
+    .ref-code{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;background:var(--grey);padding:7px 14px;display:inline-block;margin:10px 0}
+    .done-btn{margin-top:18px;background:var(--black);color:var(--white);font-family:var(--fm);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:12px 28px;border:none;cursor:none}
+
+    footer{background:var(--off);border-top:1.5px solid var(--mid);padding:40px 48px 28px}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center}
+    .footer-logo{font-family:var(--fd);font-size:2rem;color:var(--black)}.footer-logo span{color:var(--orange)}
+    .footer-bottom p{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}.nav-links{display:none}
+      .page-hero,.leagues-section,.upcoming-band{padding-left:20px;padding-right:20px}
+      .leagues-grid{grid-template-columns:1fr}
+      footer{padding:28px 20px}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="book.html" style="color:var(--orange);font-weight:700">Book Now</a></li><li><a href="courts.html">Courts</a></li>
+    <li><a href="tournaments.html">Tournaments</a></li>
+    <li><a href="leagues.html" class="active">Leagues</a></li>
+  </ul>
+  <a href="venue.html" class="nav-cta">List Your Venue</a>
+</nav>
+
+<div class="page-hero">
+  <div class="tag">— Play Every Week</div>
+  <h1>JOIN A <span>LEAGUE</span><br>THIS SEASON</h1>
+  <p>Weekly fixtures, team standings, knockout rounds. Regular sport for serious players.</p>
+</div>
+
+<section class="leagues-section">
+  <div class="leagues-grid" id="leaguesGrid"></div>
+</section>
+
+<div class="upcoming-band">
+  <h2>COMING SOON — NEW LEAGUES</h2>
+  <div class="upcoming-list" id="upcomingList"></div>
+</div>
+
+<!-- JOIN MODAL -->
+<div class="modal-overlay" id="joinModal">
+  <div class="modal" id="joinModalInner">
+    <button class="modal-close-x" onclick="closeJoinModal()">✕</button>
+    <h2 id="jTitle">JOIN LEAGUE</h2>
+    <div class="m-sub" id="jSub">League Name</div>
+    <div class="form-field"><label>Your Name / Team Name</label><input id="jName" placeholder="Name or team"/></div>
+    <div class="form-field"><label>Number of Players</label><select id="jPlayers"><option>Solo Player</option><option>Full Team</option></select></div>
+    <div class="form-field"><label>Mobile</label><input id="jPhone" type="tel" placeholder="+91 98765 43210"/></div>
+    <div class="form-field"><label>Email</label><input id="jEmail" type="email" placeholder="you@email.com"/></div>
+    <div class="summary-box">
+      <div class="sum-row"><span class="sum-l">League</span><span class="sum-r" id="jSumName">—</span></div>
+      <div class="sum-row"><span class="sum-l">Season Fee</span><span class="sum-r" id="jSumFee">—</span></div>
+      <div class="sum-row"><span class="sum-l">Platform Fee</span><span class="sum-r">₹50</span></div>
+      <div class="sum-row sum-total"><span class="sum-l" style="font-weight:600;color:var(--black)">Total</span><span class="sum-r" id="jSumTotal">—</span></div>
+    </div>
+    <button class="pay-btn" onclick="payLeague()">PAY & JOIN LEAGUE</button>
+    <div class="secure-note">🔒 Razorpay · Instant spot confirmed</div>
+  </div>
+</div>
+<div class="modal-overlay" id="successModal">
+  <div class="modal">
+    <div class="success-inner">
+      <div class="icon">⚽</div>
+      <h2>YOU'RE IN!</h2>
+      <p>You've joined <span id="sLName" style="font-weight:600;color:var(--black)">—</span></p>
+      <div class="ref-code" id="sRef">REF: PLAY-L-XXXXX</div>
+      <p>Schedule & fixture details sent to your email. See you on the field! 🏆</p>
+      <button class="done-btn" onclick="document.getElementById('successModal').classList.remove('show')">Done</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-bottom">
+    <div class="footer-logo">PL<span>A</span>Y</div>
+    <p>© 2025 Play Sports Pvt. Ltd.</p>
+  </div>
+</footer>
+
+<script>
+const LEAGUES=[
+  {id:'l1',name:'Bandra 5-a-Side Football League',sport:'Football',city:'Mumbai',area:'Carter Road',schedule:'Every Saturday',fee:5000,unit:'per team/season',teams:12,teamsTotal:16,season:'Jun–Aug 2025',emoji:'⚽',active:true},
+  {id:'l2',name:'Mumbai Badminton Premier League',sport:'Badminton',city:'Mumbai',area:'Andheri',schedule:'Sundays',fee:2000,unit:'per player/season',teams:38,teamsTotal:48,season:'Jun–Sep 2025',emoji:'🏸',active:true},
+  {id:'l3',name:'Delhi Corporate Cricket League',sport:'Cricket',city:'Delhi',area:'Multiple Venues',schedule:'Weekends',fee:8000,unit:'per team/season',teams:14,teamsTotal:20,season:'Jul–Oct 2025',emoji:'🏏',active:true},
+  {id:'l4',name:'Bangalore Basketball League',sport:'Basketball',city:'Bangalore',area:'Koramangala',schedule:'Fri & Sat',fee:3000,unit:'per team/season',teams:10,teamsTotal:16,season:'Jun–Aug 2025',emoji:'🏀',active:true},
+];
+const UPCOMING=[
+  {name:'Pune Tennis League',sport:'Tennis',city:'Pune',schedule:'Saturdays',fee:3500,emoji:'🎾',launch:'Jul 2025'},
+  {name:'Hyderabad Football League',sport:'Football',city:'Hyderabad',schedule:'Sundays',fee:6000,emoji:'⚽',launch:'Jul 2025'},
+  {name:'Chennai Badminton League',sport:'Badminton',city:'Chennai',schedule:'Weekends',fee:2500,emoji:'🏸',launch:'Aug 2025'},
+  {name:'Kolkata Cricket League',sport:'Cricket',city:'Kolkata',schedule:'Weekends',fee:7500,emoji:'🏏',launch:'Aug 2025'},
+];
+
+let currentL=null;
+
+document.getElementById('leaguesGrid').innerHTML=LEAGUES.map(l=>{
+  const pct=Math.round((l.teams/l.teamsTotal)*100);
+  return `<div class="league-card">
+    <div class="league-card-top">
+      <span class="league-emoji">${l.emoji}</span>
+      <div class="league-sport">${l.sport} · ${l.city}</div>
+      <div class="league-name">${l.name}</div>
+      <div class="league-meta">
+        <span>📅 ${l.schedule} · ${l.season}</span>
+        <span>📍 ${l.area}</span>
+        <span>👥 ${l.teams}/${l.teamsTotal} teams enrolled</span>
+      </div>
+    </div>
+    <div class="teams-bar"><div class="teams-fill" style="width:${pct}%"></div></div>
+    <div class="teams-label">${l.teamsTotal-l.teams} spots remaining</div>
+    <div class="league-card-bot">
+      <div class="league-fee">₹${l.fee.toLocaleString()}<small>${l.unit}</small></div>
+      <button class="join-btn" onclick="openJoin('${l.id}')">Join League →</button>
+    </div>
+  </div>`;
+}).join('');
+
+document.getElementById('upcomingList').innerHTML=UPCOMING.map(u=>`
+  <div class="upcoming-item">
+    <div class="u-emoji">${u.emoji}</div>
+    <div class="u-info">
+      <div class="u-name">${u.name}</div>
+      <div class="u-sub"><span>📍 ${u.city}</span><span>📅 ${u.schedule}</span><span>🚀 Launching ${u.launch}</span></div>
+    </div>
+    <div class="u-fee">₹${u.fee.toLocaleString()}</div>
+    <button class="notify-btn">Notify Me</button>
+  </div>
+`).join('');
+
+function openJoin(id){
+  currentL=LEAGUES.find(l=>l.id===id);
+  if(!currentL) return;
+  document.getElementById('jTitle').textContent='JOIN LEAGUE';
+  document.getElementById('jSub').textContent=currentL.name;
+  document.getElementById('jSumName').textContent=currentL.name;
+  document.getElementById('jSumFee').textContent='₹'+currentL.fee.toLocaleString()+' '+currentL.unit;
+  document.getElementById('jSumTotal').textContent='₹'+(currentL.fee+50).toLocaleString();
+  document.getElementById('joinModal').classList.add('show');
+}
+function closeJoinModal(){document.getElementById('joinModal').classList.remove('show')}
+
+function payLeague(){
+  const name=document.getElementById('jName').value.trim();
+  const phone=document.getElementById('jPhone').value.trim();
+  const email=document.getElementById('jEmail').value.trim();
+  if(!name||!phone||!email){alert('Please fill all details.');return;}
+  if(!currentL) return;
+  const options={
+    key:'rzp_test_Sktp03hs6SLL53',
+    amount:(currentL.fee+50)*100,currency:'INR',
+    name:'Play — League Registration',
+    description:currentL.name,
+    handler:function(){
+      closeJoinModal();
+      const ref='PLAY-L-'+Date.now().toString(36).toUpperCase();
+      document.getElementById('sRef').textContent='REF: '+ref;
+      document.getElementById('sLName').textContent=currentL.name;
+      document.getElementById('successModal').classList.add('show');
+    },
+    prefill:{name,email,contact:phone},
+    theme:{color:'#ff4d1c'}
+  };
+  new Razorpay(options).open();
+}
+
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>

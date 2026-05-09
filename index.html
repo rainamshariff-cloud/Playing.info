@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+
+  <title>Play — India's Sports Marketplace | Book Courts, Cycles, Tournaments</title>
+  <meta name="description" content="Play is India's sports marketplace. Discover and book courts, cycle rentals, tournaments and leagues from verified local sports businesses. Mumbai, Delhi, Bangalore and more."/>
+  <meta name="keywords" content="sports booking india, book badminton court, football turf booking, cycle rental mumbai, sports tournaments india, sports marketplace, playin.info, court booking online"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://playin.info/"/>
+
+  <meta property="og:title" content="Play — India's Sports Marketplace"/>
+  <meta property="og:description" content="Discover courts, cycles, tournaments and leagues from verified sports businesses across India. Book instantly on playin.info"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://playin.info/"/>
+  <meta property="og:site_name" content="Play — India's Sports Marketplace"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Play — India's Sports Marketplace"/>
+  <meta name="twitter:description" content="Book courts, cycles & tournaments from verified sports businesses. India's #1 sports marketplace."/>
+
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Play","url":"https://playin.info","description":"India's Sports Marketplace — connecting players with verified sports businesses","potentialAction":{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://playin.info/courts.html?sport={search_term_string}"},"query-input":"required name=search_term_string"}}
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Organization","name":"Play Sports Pvt. Ltd.","url":"https://playin.info","description":"India's Sports Marketplace — aggregating courts, cycles, tournaments and leagues from verified local sports businesses","contactPoint":{"@type":"ContactPoint","telephone":"+91-98765-43210","contactType":"customer service","areaServed":"IN"}}
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#0d0d0d;--white:#ffffff;--off:#f7f5f2;
+      --lime:#a8e000;--lime-d:#7ab800;
+      --orange:#ff4d1c;--orange-d:#e8431a;
+      --grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;
+      --fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .3s}
+    nav.scrolled{border-bottom-color:var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+    .nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{font-family:var(--fm);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover{color:var(--orange)}
+    .nav-cta{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.63rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:10px 22px;border:none;cursor:none;transition:background .2s}
+    .nav-cta:hover{background:var(--orange)}
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 48px 60px;position:relative;overflow:hidden;background:var(--off)}
+    .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 50% at 75% 35%,rgba(168,224,0,.12) 0%,transparent 65%),radial-gradient(ellipse 40% 40% at 15% 75%,rgba(255,77,28,.07) 0%,transparent 60%),var(--off)}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--mid) 1px,transparent 1px),linear-gradient(90deg,var(--mid) 1px,transparent 1px);background-size:80px 80px;opacity:.35}
+    .hero-ticker{position:absolute;top:42%;left:0;right:0;transform:translateY(-50%);font-family:var(--fd);font-size:clamp(8rem,18vw,22rem);color:rgba(0,0,0,.04);white-space:nowrap;letter-spacing:.05em;animation:ticker 22s linear infinite;pointer-events:none}
+    @keyframes ticker{0%{transform:translateY(-50%) translateX(0)}100%{transform:translateY(-50%) translateX(-50%)}}
+
+    /* MARKETPLACE TRUST BADGE */
+    .hero-trust{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--orange);border:1px solid rgba(255,77,28,.2);background:rgba(255,77,28,.04);padding:7px 16px;margin-bottom:24px;opacity:0;animation:fadeUp .8s .3s forwards}
+    .hero-trust .dot{width:7px;height:7px;background:var(--lime);border-radius:50%;flex-shrink:0}
+
+    .hero-headline{font-family:var(--fd);font-size:clamp(4.5rem,10vw,12rem);line-height:.92;letter-spacing:.02em;color:var(--black);position:relative;z-index:2;opacity:0;animation:fadeUp .8s .5s forwards}
+    .hero-headline em{font-style:normal;color:var(--lime-d);display:block}
+    .hero-headline .stroke{-webkit-text-stroke:2px var(--black);color:transparent}
+
+    .hero-sub{margin-top:32px;display:flex;align-items:flex-end;justify-content:space-between;opacity:0;animation:fadeUp .8s .7s forwards}
+    .hero-sub p{font-size:1.05rem;color:var(--muted);max-width:420px;line-height:1.75;font-weight:300}
+    .hero-sub p strong{color:var(--text);font-weight:500}
+
+    .hero-actions{display:flex;gap:12px;align-items:center}
+    .btn-primary{background:var(--orange);color:var(--white);font-family:var(--fm);font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border:none;cursor:none;transition:all .2s;position:relative;overflow:hidden}
+    .btn-primary::after{content:'';position:absolute;inset:0;background:var(--black);transform:scaleX(0);transform-origin:left;transition:transform .3s ease;z-index:0}
+    .btn-primary:hover::after{transform:scaleX(1)}
+    .btn-primary span{position:relative;z-index:1}
+    .btn-ghost{background:transparent;color:var(--text);font-family:var(--fm);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:16px 36px;border:1.5px solid var(--mid);cursor:none;transition:all .2s}
+    .btn-ghost:hover{border-color:var(--black);background:var(--black);color:var(--white)}
+
+    .hero-stats{position:absolute;right:48px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:32px;opacity:0;animation:fadeIn 1s 1s forwards}
+    .stat-item{text-align:right}
+    .stat-num{font-family:var(--fd);font-size:3rem;color:var(--black);line-height:1}
+    .stat-num span{color:var(--orange)}
+    .stat-label{font-family:var(--fm);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+    .stat-divider{width:1px;height:32px;background:var(--mid);margin-left:auto}
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+    /* HOW THE MARKETPLACE WORKS */
+    .marketplace-band{background:var(--black);padding:64px 48px;border-top:1.5px solid #111}
+    .marketplace-band .inner{display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:center}
+    .marketplace-band h2{font-family:var(--fd);font-size:clamp(2rem,4vw,3.5rem);color:var(--white);letter-spacing:.04em;line-height:1}
+    .marketplace-band h2 span{color:var(--lime)}
+    .marketplace-band p{font-size:.88rem;color:rgba(255,255,255,.4);line-height:1.75;font-weight:300;margin-top:12px}
+    .how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+    .how-step{background:#1a1a1a;padding:28px 24px;border:1px solid #2a2a2a}
+    .how-step .num{font-family:var(--fd);font-size:3rem;color:rgba(255,255,255,.06);line-height:1;margin-bottom:12px}
+    .how-step .ico{font-size:1.6rem;margin-bottom:12px}
+    .how-step h4{font-family:var(--fd);font-size:1.1rem;letter-spacing:.06em;color:var(--white);margin-bottom:6px}
+    .how-step p{font-size:.78rem;color:rgba(255,255,255,.35);line-height:1.65;font-weight:300}
+    .how-step:nth-child(2){background:var(--lime);border-color:var(--lime)}
+    .how-step:nth-child(2) .num{color:rgba(0,0,0,.06)}
+    .how-step:nth-child(2) h4{color:var(--black)}
+    .how-step:nth-child(2) p{color:rgba(0,0,0,.5)}
+
+    /* MARQUEE */
+    .marquee-section{border-top:1.5px solid var(--black);border-bottom:1.5px solid var(--black);overflow:hidden;padding:16px 0;background:var(--lime)}
+    .marquee-track{display:flex;gap:56px;white-space:nowrap;animation:marquee 22s linear infinite}
+    .marquee-item{font-family:var(--fd);font-size:1rem;letter-spacing:.22em;color:var(--black);flex-shrink:0;display:flex;align-items:center;gap:56px}
+    .marquee-item .dot{width:5px;height:5px;background:rgba(0,0,0,.35);border-radius:50%;flex-shrink:0}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+    /* SEARCH */
+    .search-section{padding:64px 48px;background:var(--white);border-bottom:1px solid var(--mid)}
+    .search-label{font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+    .search-bar{display:flex;border:1.5px solid var(--black);background:var(--white)}
+    .search-field{flex:1;display:flex;align-items:center;padding:0 24px;border-right:1px solid var(--mid);gap:12px}
+    .search-field label{font-family:var(--fm);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+    .search-field select,.search-field input{background:transparent;border:none;outline:none;color:var(--text);font-family:var(--fb);font-size:.9rem;width:100%;padding:18px 0;cursor:none}
+    .search-field select option{background:var(--white)}
+    .search-btn{background:var(--black);color:var(--white);font-family:var(--fd);font-size:1.1rem;letter-spacing:.15em;padding:0 44px;border:none;cursor:none;transition:background .2s;white-space:nowrap}
+    .search-btn:hover{background:var(--orange)}
+
+    /* CATEGORIES */
+    .categories-section{padding:72px 48px;background:var(--off)}
+    .section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:40px}
+    .section-tag{font-family:var(--fm);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+    .section-title{font-family:var(--fd);font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:1;letter-spacing:.04em;color:var(--black)}
+    .section-link{font-family:var(--fm);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--mid);padding-bottom:3px;transition:color .2s,border-color .2s}
+    .section-link:hover{color:var(--orange);border-color:var(--orange)}
+
+    /* CATEGORY CARDS — what types of merchants are on Play */
+    .categories-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+    .cat-card{background:var(--white);border:1px solid var(--mid);padding:32px 24px;cursor:none;transition:all .3s;position:relative;overflow:hidden}
+    .cat-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--orange);transition:height .4s ease}
+    .cat-card:hover{background:var(--black);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.12)}
+    .cat-card:hover::before{height:100%}
+    .cat-card:hover .cat-name{color:var(--lime)}
+    .cat-card:hover .cat-desc,.cat-card:hover .cat-count{color:rgba(255,255,255,.4)}
+    .cat-emoji{font-size:2.8rem;margin-bottom:20px;display:block}
+    .cat-name{font-family:var(--fd);font-size:1.5rem;letter-spacing:.06em;color:var(--black);margin-bottom:6px;transition:color .3s}
+    .cat-count{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;transition:color .3s}
+    .cat-desc{font-size:.82rem;color:var(--muted);line-height:1.6;font-weight:300;transition:color .3s}
+
+    /* FEATURED MERCHANTS */
+    .merchants-section{padding:72px 48px;background:var(--white)}
+    .merchants-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+    .merchant-card{background:var(--off);border:1px solid var(--mid);padding:0;cursor:none;transition:all .3s;overflow:hidden}
+    .merchant-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.09);transform:translateY(-4px)}
+    .merchant-card-img{height:140px;background:var(--grey);display:flex;align-items:center;justify-content:center;font-size:3.5rem;position:relative}
+    .merchant-badge{position:absolute;top:10px;left:10px;font-family:var(--fm);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;background:var(--black);color:var(--white);padding:4px 10px}
+    .verified-badge{position:absolute;top:10px;right:10px;font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;background:var(--lime);color:var(--black);padding:4px 8px}
+    .merchant-body{padding:22px}
+    .merchant-type{font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+    .merchant-name{font-family:var(--fd);font-size:1.35rem;letter-spacing:.04em;color:var(--black);margin-bottom:4px;line-height:1.1}
+    .merchant-loc{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+    .merchant-rating{display:flex;align-items:center;gap:6px;margin-bottom:14px}
+    .stars{color:var(--orange);font-size:.8rem}
+    .r-num{font-family:var(--fm);font-size:.62rem;font-weight:700}
+    .r-cnt{font-family:var(--fm);font-size:.56rem;color:var(--muted)}
+    .merchant-footer{display:flex;align-items:center;justify-content:space-between;padding-top:14px;border-top:1px solid var(--mid)}
+    .merchant-price{font-family:var(--fd);font-size:1.5rem;color:var(--black)}
+    .merchant-price small{font-family:var(--fm);font-size:.5rem;color:var(--muted);font-weight:normal;letter-spacing:.1em;display:block}
+    .view-btn{font-family:var(--fm);font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--white);background:var(--black);padding:9px 16px;border:none;cursor:none;transition:background .2s}
+    .view-btn:hover{background:var(--orange)}
+
+    /* PARTNER PITCH */
+    .partner-section{padding:80px 48px;background:var(--black);display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .partner-left h2{font-family:var(--fd);font-size:clamp(2.5rem,5vw,5rem);color:var(--white);letter-spacing:.03em;line-height:.95;margin-bottom:16px}
+    .partner-left h2 span{color:var(--lime)}
+    .partner-left p{font-size:.9rem;color:rgba(255,255,255,.4);line-height:1.75;font-weight:300}
+    .partner-right{display:flex;flex-direction:column;gap:2px}
+    .partner-stat{background:#1a1a1a;border:1px solid #2a2a2a;padding:24px 28px;display:flex;align-items:center;gap:20px}
+    .partner-stat .p-num{font-family:var(--fd);font-size:2.2rem;color:var(--lime);flex-shrink:0;line-height:1}
+    .partner-stat .p-text h4{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--white);margin-bottom:4px}
+    .partner-stat .p-text p{font-size:.78rem;color:rgba(255,255,255,.35);font-weight:300}
+    .partner-cta{display:flex;gap:12px;margin-top:24px}
+    .btn-lime{background:var(--lime);color:var(--black);font-family:var(--fm);font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:14px 32px;border:none;cursor:none;transition:background .2s}
+    .btn-lime:hover{background:var(--lime-d)}
+    .btn-outline-white{background:transparent;color:var(--white);font-family:var(--fm);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:14px 32px;border:1px solid rgba(255,255,255,.2);cursor:none;transition:all .2s}
+    .btn-outline-white:hover{border-color:var(--white)}
+
+    /* CITIES */
+    .cities-section{padding:72px 48px;background:var(--off);overflow:hidden}
+    .cities-row{display:flex;gap:2px;margin-top:40px}
+    .city-card{flex:1;background:var(--white);border:1px solid var(--mid);padding:32px 24px;cursor:none;transition:all .4s;min-height:180px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+    .city-card:hover{flex:2.5;background:var(--black);border-color:var(--black)}
+    .city-card:hover .city-name{color:var(--lime)}
+    .city-card:hover .city-count{color:rgba(255,255,255,.4)}
+    .city-card.active-city{flex:2.5}
+    .city-bg{position:absolute;top:12px;right:12px;font-size:3rem;opacity:.1}
+    .city-name{font-family:var(--fd);font-size:2rem;letter-spacing:.08em;color:var(--black);transition:color .3s;white-space:nowrap}
+    .city-count{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:6px;transition:color .3s}
+    .city-status{font-family:var(--fm);font-size:.54rem;letter-spacing:.14em;text-transform:uppercase;color:var(--lime-d);margin-bottom:8px}
+
+    /* TRUST STRIP */
+    .trust-strip{background:var(--white);border-top:1px solid var(--mid);border-bottom:1px solid var(--mid);padding:32px 48px;display:flex;gap:48px;align-items:center;justify-content:center;flex-wrap:wrap}
+    .trust-item{display:flex;align-items:center;gap:12px}
+    .trust-item .t-ico{font-size:1.4rem}
+    .trust-item .t-text h4{font-family:var(--fm);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--black);margin-bottom:2px}
+    .trust-item .t-text p{font-size:.76rem;color:var(--muted);font-weight:300}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.visible{opacity:1;transform:none}
+
+    footer{background:var(--off);border-top:1.5px solid var(--mid);padding:56px 48px 32px}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px}
+    .footer-logo{font-family:var(--fd);font-size:2.8rem;letter-spacing:.1em;color:var(--black)}
+    .footer-logo span{color:var(--orange)}
+    .footer-tagline{font-size:.8rem;color:var(--muted);margin-top:6px;font-weight:300}
+    .footer-marketplace-note{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.6;max-width:280px}
+    .footer-cols{display:flex;gap:64px}
+    .footer-col h4{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .footer-col ul a{font-size:.84rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col ul a:hover{color:var(--orange)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--mid)}
+    .footer-bottom p{font-family:var(--fm);font-size:.54rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+    .footer-disclaimer{font-family:var(--fm);font-size:.5rem;letter-spacing:.1em;color:rgba(138,133,128,.5);text-transform:uppercase;margin-top:6px}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}.nav-links{display:none}
+      .hero{padding:0 24px 48px}.hero-stats{display:none}
+      .hero-headline{font-size:clamp(3.5rem,14vw,6rem)}
+      .hero-sub{flex-direction:column;align-items:flex-start;gap:24px}
+      .marketplace-band .inner{grid-template-columns:1fr}
+      .how-steps{grid-template-columns:repeat(2,1fr)}
+      .search-section,.categories-section,.merchants-section,.cities-section{padding-left:20px;padding-right:20px}
+      .search-bar{flex-direction:column}.search-field{border-right:none;border-bottom:1px solid var(--mid)}.search-btn{padding:18px}
+      .categories-grid{grid-template-columns:repeat(2,1fr)}
+      .merchants-grid{grid-template-columns:1fr}
+      .partner-section{grid-template-columns:1fr;padding:48px 20px}
+      .cities-row{flex-direction:column}
+      .city-card:hover{flex:1}
+      .trust-strip{gap:24px;padding:24px 20px}
+      footer{padding:44px 20px 28px}
+      .footer-top{flex-direction:column;gap:32px}.footer-cols{gap:32px;flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="book.html" style="color:var(--orange);font-weight:700">Book Now</a></li><li><a href="courts.html">Courts</a></li>
+    <li><a href="cycling.html">Cycling</a></li>
+    <li><a href="tournaments.html">Tournaments</a></li>
+    <li><a href="leagues.html">Leagues</a></li>
+  </ul>
+  <button class="nav-cta" onclick="window.location='partner.html'">List on Play</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-ticker">DISCOVER&nbsp;&nbsp;BOOK&nbsp;&nbsp;PLAY&nbsp;&nbsp;DISCOVER&nbsp;&nbsp;BOOK&nbsp;&nbsp;PLAY&nbsp;&nbsp;DISCOVER&nbsp;&nbsp;BOOK&nbsp;&nbsp;PLAY&nbsp;&nbsp;</div>
+
+  <div class="hero-stats">
+    <div class="stat-item"><div class="stat-num">500<span>+</span></div><div class="stat-label">Listed Partners</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-num">48<span>+</span></div><div class="stat-label">Tournaments</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">Cities</div></div>
+  </div>
+
+  <div class="hero-trust"><span class="dot"></span> India's Sports Marketplace · 500+ Verified Partners</div>
+  <h1 class="hero-headline">
+    Discover.<br>
+    <em>Book.</em>
+    <span class="stroke">Play.</span>
+  </h1>
+  <div class="hero-sub">
+    <p>Find <strong>courts, cycles, tournaments & leagues</strong> from verified local sports businesses — all in one place. No middlemen, just sport.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="window.location='courts.html'"><span>Explore Courts</span></button>
+      <button class="btn-ghost" onclick="window.location='cycling.html'">🚲 Rent a Cycle</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE MARKETPLACE WORKS -->
+<div class="marketplace-band">
+  <div class="inner">
+    <div>
+      <h2>HOW<br><span>PLAY</span><br>WORKS</h2>
+      <p>Play is a marketplace connecting players with verified sports businesses. We don't own courts or cycles — we make it easy to find and book the best ones.</p>
+    </div>
+    <div class="how-steps">
+      <div class="how-step"><div class="num">01</div><div class="ico">🔍</div><h4>BROWSE</h4><p>Search courts, cycle rentals, tournaments and leagues from verified local partners.</p></div>
+      <div class="how-step"><div class="num">02</div><div class="ico">📅</div><h4>BOOK</h4><p>Pick your slot, pay securely to the business via Razorpay. Instant QR confirmation.</p></div>
+      <div class="how-step"><div class="num">03</div><div class="ico">🏅</div><h4>SHOW UP</h4><p>Arrive at the venue, show your QR. The partner handles everything on the ground.</p></div>
+      <div class="how-step"><div class="num">04</div><div class="ico">⭐</div><h4>REVIEW</h4><p>Rate your experience. Help other players find the best sports businesses in your city.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track">
+    <div class="marquee-item">BADMINTON <span class="dot"></span></div>
+    <div class="marquee-item">FOOTBALL <span class="dot"></span></div>
+    <div class="marquee-item">CYCLING <span class="dot"></span></div>
+    <div class="marquee-item">CRICKET <span class="dot"></span></div>
+    <div class="marquee-item">TENNIS <span class="dot"></span></div>
+    <div class="marquee-item">SWIMMING <span class="dot"></span></div>
+    <div class="marquee-item">TABLE TENNIS <span class="dot"></span></div>
+    <div class="marquee-item">BASKETBALL <span class="dot"></span></div>
+    <div class="marquee-item">SQUASH <span class="dot"></span></div>
+    <div class="marquee-item">SKATING <span class="dot"></span></div>
+    <div class="marquee-item">BADMINTON <span class="dot"></span></div>
+    <div class="marquee-item">FOOTBALL <span class="dot"></span></div>
+    <div class="marquee-item">CYCLING <span class="dot"></span></div>
+    <div class="marquee-item">CRICKET <span class="dot"></span></div>
+    <div class="marquee-item">TENNIS <span class="dot"></span></div>
+    <div class="marquee-item">SWIMMING <span class="dot"></span></div>
+    <div class="marquee-item">TABLE TENNIS <span class="dot"></span></div>
+    <div class="marquee-item">BASKETBALL <span class="dot"></span></div>
+    <div class="marquee-item">SQUASH <span class="dot"></span></div>
+    <div class="marquee-item">SKATING <span class="dot"></span></div>
+  </div>
+</div>
+
+<!-- SEARCH -->
+<section class="search-section">
+  <div class="search-label">— Find a Partner Near You</div>
+  <div class="search-bar">
+    <div class="search-field">
+      <label>Category</label>
+      <select onchange="if(this.value)window.location=this.value">
+        <option value="">All Categories</option>
+        <option value="courts.html">Court Booking</option>
+        <option value="cycling.html">Cycle Rental</option>
+        <option value="tournaments.html">Tournaments</option>
+        <option value="leagues.html">Leagues</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>Sport</label>
+      <select id="sportSel">
+        <option value="">All Sports</option>
+        <option>Badminton</option><option>Football</option><option>Cricket</option>
+        <option>Tennis</option><option>Swimming</option><option>Cycling</option>
+        <option>Table Tennis</option><option>Basketball</option><option>Squash</option>
+        <option>Pickleball</option><option>Padel</option>
+      </select>
+    </div>
+    <div class="search-field">
+      <label>City</label>
+      <select id="citySel">
+        <option value="">All Cities</option>
+        <option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
+        <option>Pune</option><option>Hyderabad</option><option>Chennai</option><option>Kolkata</option>
+      </select>
+    </div>
+    <button class="search-btn" onclick="doSearch()">Search Play</button>
+  </div>
+</section>
+
+<!-- WHAT'S ON PLAY -->
+<section class="categories-section reveal">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">— Browse by Category</div>
+      <h2 class="section-title">WHAT'S ON PLAY</h2>
+    </div>
+    <a href="courts.html" class="section-link">View All Partners →</a>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card" onclick="window.location='courts.html'">
+      <span class="cat-emoji">🏸</span>
+      <div class="cat-name">COURT BOOKING</div>
+      <div class="cat-count">340+ venues listed</div>
+      <div class="cat-desc">Badminton, football turf, cricket nets, tennis, basketball, squash, swimming — from verified venue operators.</div>
+    </div>
+    <div class="cat-card" onclick="window.location='cycling.html'">
+      <span class="cat-emoji">🚲</span>
+      <div class="cat-name">CYCLE RENTAL</div>
+      <div class="cat-count">12 rental partners</div>
+      <div class="cat-desc">Local cycle rental businesses at Worli Sea Face, Marine Drive, Bandra Bandstand, Carter Road and more.</div>
+    </div>
+    <div class="cat-card" onclick="window.location='tournaments.html'">
+      <span class="cat-emoji">🏆</span>
+      <div class="cat-name">TOURNAMENTS</div>
+      <div class="cat-count">48+ upcoming events</div>
+      <div class="cat-desc">Tournaments organised by academies, clubs and sports federations across 7 cities. Register directly with organisers.</div>
+    </div>
+    <div class="cat-card" onclick="window.location='leagues.html'">
+      <span class="cat-emoji">⚽</span>
+      <div class="cat-name">LEAGUES</div>
+      <div class="cat-count">24 active leagues</div>
+      <div class="cat-desc">Weekly and seasonal leagues run by local sports clubs. Join as a player or a team. Full fixture management included.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PARTNERS -->
+<section class="merchants-section reveal">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">— Verified Partners</div>
+      <h2 class="section-title">FEATURED ON PLAY</h2>
+    </div>
+    <a href="courts.html" class="section-link">All Partners →</a>
+  </div>
+  <div class="merchants-grid" id="featuredGrid"></div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><div class="t-ico">✅</div><div class="t-text"><h4>Verified Partners</h4><p>Every business on Play is verified before listing</p></div></div>
+  <div class="trust-item"><div class="t-ico">🔒</div><div class="t-text"><h4>Secure Payments</h4><p>Razorpay processes all transactions safely</p></div></div>
+  <div class="trust-item"><div class="t-ico">⚡</div><div class="t-text"><h4>Instant Confirmation</h4><p>QR ticket sent immediately on booking</p></div></div>
+  <div class="trust-item"><div class="t-ico">⭐</div><div class="t-text"><h4>Genuine Reviews</h4><p>Ratings from real players only</p></div></div>
+  <div class="trust-item"><div class="t-ico">💰</div><div class="t-text"><h4>Best Prices</h4><p>Partners set their own prices. No markup.</p></div></div>
+</div>
+
+<!-- PARTNER PITCH -->
+<section class="partner-section reveal">
+  <div class="partner-left">
+    <h2>GROW YOUR<br>SPORTS<br><span>BUSINESS</span><br>ON PLAY</h2>
+    <p>Play is a marketplace for sports businesses. List your courts, cycles, events or leagues and reach thousands of active players across India — for free.</p>
+    <div class="partner-cta">
+      <button class="btn-lime" onclick="window.location='partner.html'">List Your Business →</button>
+      <button class="btn-outline-white" onclick="window.location='partner.html'">How It Works</button>
+    </div>
+  </div>
+  <div class="partner-right">
+    <div class="partner-stat"><div class="p-num">0</div><div class="p-text"><h4>Upfront Cost</h4><p>Free to list. We charge a small commission only on successful bookings.</p></div></div>
+    <div class="partner-stat"><div class="p-num">12%</div><div class="p-text"><h4>Platform Commission</h4><p>Per completed booking. You keep 88% and set your own prices.</p></div></div>
+    <div class="partner-stat"><div class="p-num">24hr</div><div class="p-text"><h4>Payout Turnaround</h4><p>Earnings transferred to your bank within 24 hours of each booking.</p></div></div>
+    <div class="partner-stat"><div class="p-num">500+</div><div class="p-text"><h4>Businesses Already Listed</h4><p>Join India's fastest-growing sports marketplace.</p></div></div>
+  </div>
+</section>
+
+<!-- CITIES -->
+<section class="cities-section reveal">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">— Where Play Is Live</div>
+      <h2 class="section-title">CITIES ON PLAY</h2>
+    </div>
+  </div>
+  <div class="cities-row">
+    <div class="city-card active-city" onclick="window.location='courts.html?city=Mumbai'">
+      <div class="city-bg">🌊</div>
+      <div class="city-status">● Live</div>
+      <div class="city-name">MUMBAI</div>
+      <div class="city-count">180+ partners · Courts, Cycling, Tournaments</div>
+    </div>
+    <div class="city-card" onclick="window.location='courts.html?city=Delhi'">
+      <div class="city-bg">🏛️</div>
+      <div class="city-status">● Live</div>
+      <div class="city-name">DELHI</div>
+      <div class="city-count">120+ partners</div>
+    </div>
+    <div class="city-card" onclick="window.location='courts.html?city=Bangalore'">
+      <div class="city-bg">🌿</div>
+      <div class="city-status">● Live</div>
+      <div class="city-name">BANGALORE</div>
+      <div class="city-count">140+ partners</div>
+    </div>
+    <div class="city-card" onclick="window.location='courts.html?city=Pune'">
+      <div class="city-bg">🏔️</div>
+      <div class="city-status" style="color:var(--orange)">◎ Coming Soon</div>
+      <div class="city-name">PUNE</div>
+      <div class="city-count">Launching Jul 2025</div>
+    </div>
+    <div class="city-card" onclick="window.location='courts.html?city=Hyderabad'">
+      <div class="city-bg">🌞</div>
+      <div class="city-status" style="color:var(--orange)">◎ Coming Soon</div>
+      <div class="city-name">HYDERABAD</div>
+      <div class="city-count">Launching Aug 2025</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">PL<span>A</span>Y</div>
+      <div class="footer-tagline">India's Sports Marketplace</div>
+      <div class="footer-marketplace-note">Play is a technology marketplace platform. All sports services are provided by independent verified partners. Play facilitates discovery and booking only.</div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Discover</h4>
+        <ul>
+          <li><a href="courts.html">Courts & Venues</a></li>
+          <li><a href="cycling.html">Cycle Rentals</a></li>
+          <li><a href="tournaments.html">Tournaments</a></li>
+          <li><a href="leagues.html">Leagues</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For Partners</h4>
+        <ul>
+          <li><a href="partner.html">List Your Business</a></li>
+          <li><a href="partner.html">Partner Dashboard</a></li>
+          <li><a href="partner.html">Commission Structure</a></li>
+          <li><a href="partner.html">Organise a Tournament</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Play</a></li>
+          <li><a href="#">How It Works</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>
+      <p>© 2025 Play Sports Pvt. Ltd. · playin.info</p>
+      <div class="footer-disclaimer">Play is a marketplace platform. Sports services are provided by independent partners. Play is not responsible for service delivery.</div>
+    </div>
+    <div style="display:flex;gap:18px">
+      <a href="#" style="font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none">Instagram</a>
+      <a href="#" style="font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none">Twitter</a>
+      <a href="#" style="font-family:var(--fm);font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Featured partners — all merchant-owned businesses
+const FEATURED = [
+  {id:'c1',name:'Sportsfit Badminton Arena',type:'Badminton Courts',city:'Mumbai',area:'Andheri West',price:350,unit:'per hour',rating:4.8,reviews:312,emoji:'🏸',featured:true,partner:'Sportsfit Pvt. Ltd.'},
+  {id:'c3',name:'Goal Zone Football Turf',type:'Football Turf',city:'Mumbai',area:'Powai',price:1200,unit:'per hour',rating:4.7,reviews:445,emoji:'⚽',featured:true,partner:'Goal Zone Sports'},
+  {id:'t1',name:'Mumbai Open Badminton Championship',type:'Tournament',city:'Mumbai',area:'Shivaji Park',price:800,unit:'per entry',rating:4.9,reviews:89,emoji:'🏆',featured:true,partner:'Mumbai Badminton Association'},
+  {id:'cyc1',name:'SeaBreeze Cycles',type:'Cycle Rental',city:'Mumbai',area:'Worli Sea Face',price:100,unit:'per hour',rating:4.8,reviews:234,emoji:'🚲',featured:true,partner:'SeaBreeze Cycles'},
+  {id:'c13',name:'Shuttle Up Badminton',type:'Badminton Courts',city:'Bangalore',area:'Whitefield',price:320,unit:'per hour',rating:4.8,reviews:412,emoji:'🏸',featured:true,partner:'Shuttle Up Sports Pvt. Ltd.'},
+  {id:'l1',name:'Bandra 5-a-Side Football League',type:'League',city:'Mumbai',area:'Carter Road',price:5000,unit:'per team/season',rating:4.7,reviews:156,emoji:'⚽',featured:true,partner:'Bandra FC'},
+];
+
+function stars(r){return '★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r))}
+
+function typeLink(t,id){
+  if(t==='Cycle Rental') return 'cycling.html?id='+id;
+  if(t==='Tournament') return 'tournaments.html';
+  if(t==='League') return 'leagues.html';
+  return 'court.html?id='+id;
+}
+
+document.getElementById('featuredGrid').innerHTML = FEATURED.map(p=>`
+  <div class="merchant-card" onclick="window.location='${typeLink(p.type,p.id)}'">
+    <div class="merchant-card-img">
+      <span>${p.emoji}</span>
+      <div class="merchant-badge">${p.type}</div>
+      <div class="verified-badge">✓ Verified</div>
+    </div>
+    <div class="merchant-body">
+      <div class="merchant-type">By ${p.partner}</div>
+      <div class="merchant-name">${p.name}</div>
+      <div class="merchant-loc">📍 ${p.area}, ${p.city}</div>
+      <div class="merchant-rating">
+        <span class="stars">${stars(p.rating)}</span>
+        <span class="r-num">${p.rating}</span>
+        <span class="r-cnt">(${p.reviews} reviews)</span>
+      </div>
+      <div class="merchant-footer">
+        <div class="merchant-price">₹${p.price.toLocaleString()}<small>${p.unit}</small></div>
+        <button class="view-btn">View →</button>
+      </div>
+    </div>
+  </div>
+`).join('');
+
+function doSearch(){
+  const sport = document.getElementById('sportSel').value;
+  const city = document.getElementById('citySel').value;
+  if(sport==='Cycling') { window.location='cycling.html'+(city?'?city='+city:''); return; }
+  if(sport==='Pickleball'||sport==='Padel') { window.location='book.html'+(city?'?city='+city:'')+'#'+sport.toLowerCase(); return; }
+  window.location = 'courts.html' + (sport||city ? '?' : '') + (sport?'sport='+encodeURIComponent(sport):'') + (sport&&city?'&':'') + (city?'city='+encodeURIComponent(city):'');
+}
+
+// Nav scroll
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+
+// Reveal
+const obs = new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// Cursor
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a,select').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>

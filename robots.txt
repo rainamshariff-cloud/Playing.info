@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://playin.info/sitemap.xml
+
+# Play Sports — playin.info
+# India's Sports Booking Platform

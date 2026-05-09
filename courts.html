@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Find Courts — Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --black:#0d0d0d;--white:#ffffff;--off:#f7f5f2;
+      --lime:#a8e000;--lime-d:#7ab800;
+      --orange:#ff4d1c;--orange-d:#e8431a;
+      --grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;
+      --fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.1em;color:var(--black);text-decoration:none}
+    .nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}
+    .nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+    .nav-links a:hover,.nav-links a.active{color:var(--orange)}
+    .nav-cta{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:10px 22px;border:none;cursor:none;transition:background .2s;text-decoration:none;display:inline-block}
+    .nav-cta:hover{background:var(--orange)}
+
+    /* HERO STRIP */
+    .page-hero{padding:110px 48px 48px;background:var(--off);border-bottom:1.5px solid var(--mid)}
+    .page-hero .tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .page-hero h1{font-family:var(--fd);font-size:clamp(3rem,7vw,6rem);line-height:.95;letter-spacing:.03em;color:var(--black);margin-bottom:6px}
+    .page-hero h1 span{color:var(--orange)}
+    .page-hero p{font-size:.95rem;color:var(--muted);font-weight:300;margin-top:12px}
+
+    /* FILTERS */
+    .filters-bar{padding:28px 48px;background:var(--white);border-bottom:1px solid var(--mid);display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:64px;z-index:50}
+    .filter-select{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;border:1.5px solid var(--mid);background:var(--white);color:var(--text);cursor:none;outline:none;transition:border-color .2s}
+    .filter-select:focus{border-color:var(--orange)}
+    .filter-btn{font-family:var(--fm);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border:1.5px solid var(--mid);background:var(--white);color:var(--muted);cursor:none;transition:all .2s}
+    .filter-btn.active,.filter-btn:hover{border-color:var(--orange);color:var(--orange);background:rgba(255,77,28,.04)}
+    .results-count{font-family:var(--fm);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-left:auto}
+
+    /* GRID */
+    .courts-section{padding:40px 48px 80px}
+    .courts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+
+    .court-card{background:var(--off);border:1px solid var(--mid);padding:0;cursor:none;transition:all .3s;overflow:hidden;display:flex;flex-direction:column}
+    .court-card:hover{box-shadow:0 12px 40px rgba(0,0,0,.1);transform:translateY(-4px);z-index:2}
+    .court-card-img{height:160px;background:var(--grey);display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+    .court-card-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(0,0,0,.06));pointer-events:none}
+    .court-sport-badge{position:absolute;top:12px;left:12px;font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;background:var(--black);color:var(--white);padding:4px 10px}
+    .featured-badge{position:absolute;top:12px;right:12px;font-family:var(--fm);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase;background:var(--orange);color:var(--white);padding:4px 10px}
+    .court-body{padding:24px;flex:1;display:flex;flex-direction:column}
+    .court-name{font-family:var(--fd);font-size:1.4rem;letter-spacing:.04em;color:var(--black);margin-bottom:6px;line-height:1.1}
+    .court-location{font-family:var(--fm);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .court-amenities{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
+    .amenity-tag{font-family:var(--fm);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;background:var(--grey);color:var(--muted);border:1px solid var(--mid)}
+    .court-rating{display:flex;align-items:center;gap:6px;margin-bottom:16px}
+    .stars{color:var(--orange);font-size:.85rem}
+    .rating-num{font-family:var(--fm);font-size:.65rem;font-weight:700;color:var(--text)}
+    .rating-count{font-family:var(--fm);font-size:.58rem;color:var(--muted)}
+    .court-footer{display:flex;align-items:center;justify-content:space-between;padding-top:16px;border-top:1px solid var(--mid);margin-top:auto}
+    .court-price{font-family:var(--fd);font-size:1.6rem;color:var(--black)}
+    .court-price small{font-family:var(--fm);font-size:.52rem;color:var(--muted);font-weight:normal;letter-spacing:.1em;display:block}
+    .book-btn{background:var(--black);color:var(--white);font-family:var(--fm);font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:10px 18px;border:none;cursor:none;transition:background .2s;text-decoration:none;display:inline-block}
+    .book-btn:hover{background:var(--orange)}
+
+    /* EMPTY STATE */
+    .empty-state{text-align:center;padding:80px 48px;color:var(--muted)}
+    .empty-state .emoji{font-size:4rem;margin-bottom:16px}
+    .empty-state p{font-family:var(--fm);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase}
+
+    footer{background:var(--off);border-top:1.5px solid var(--mid);padding:56px 48px 32px}
+    .footer-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:44px}
+    .footer-logo{font-family:var(--fd);font-size:2.6rem;letter-spacing:.1em;color:var(--black)}
+    .footer-logo span{color:var(--orange)}
+    .footer-tagline{font-size:.8rem;color:var(--muted);margin-top:6px;font-weight:300}
+    .footer-cols{display:flex;gap:64px}
+    .footer-col h4{font-family:var(--fm);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+    .footer-col ul a{font-size:.84rem;color:var(--muted);text-decoration:none;transition:color .2s}
+    .footer-col ul a:hover{color:var(--orange)}
+    .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--mid)}
+    .footer-bottom p{font-family:var(--fm);font-size:.56rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}.nav-links{display:none}
+      .page-hero,.courts-section,.filters-bar{padding-left:20px;padding-right:20px}
+      .courts-grid{grid-template-columns:1fr}
+      footer{padding:40px 20px 24px}
+      .footer-top{flex-direction:column;gap:28px}
+      .footer-cols{gap:28px;flex-wrap:wrap}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="courts.html" class="active">Courts</a></li>
+    <li><a href="tournaments.html">Tournaments</a></li>
+    <li><a href="leagues.html">Leagues</a></li>
+    <li><a href="index.html#how">How It Works</a></li>
+  </ul>
+  <a href="venue.html" class="nav-cta">List Your Venue</a>
+</nav>
+
+<div class="page-hero">
+  <div class="tag">— Find & Book</div>
+  <h1>COURTS <span>NEAR</span><br>YOU</h1>
+  <p>2,000+ courts across India · Real-time availability · Instant confirmation</p>
+</div>
+
+<div class="filters-bar">
+  <select class="filter-select" id="cityFilter">
+    <option value="">All Cities</option>
+    <option value="Mumbai">Mumbai</option>
+    <option value="Delhi">Delhi</option>
+    <option value="Bangalore">Bangalore</option>
+    <option value="Pune">Pune</option>
+    <option value="Hyderabad">Hyderabad</option>
+    <option value="Chennai">Chennai</option>
+    <option value="Kolkata">Kolkata</option>
+  </select>
+  <select class="filter-select" id="sportFilter">
+    <option value="">All Sports</option>
+    <option value="Badminton">Badminton</option>
+    <option value="Football">Football</option>
+    <option value="Cricket">Cricket</option>
+    <option value="Tennis">Tennis</option>
+    <option value="Swimming">Swimming</option>
+    <option value="Table Tennis">Table Tennis</option>
+    <option value="Basketball">Basketball</option>
+    <option value="Squash">Squash</option>
+  </select>
+  <select class="filter-select" id="priceFilter">
+    <option value="">Any Price</option>
+    <option value="300">Under ₹300</option>
+    <option value="500">Under ₹500</option>
+    <option value="1000">Under ₹1,000</option>
+    <option value="9999">Above ₹1,000</option>
+  </select>
+  <button class="filter-btn active" onclick="filterCourts('all',this)">All</button>
+  <button class="filter-btn" onclick="filterCourts('featured',this)">Featured</button>
+  <div class="results-count" id="resultsCount">24 venues found</div>
+</div>
+
+<section class="courts-section">
+  <div class="courts-grid" id="courtsGrid"></div>
+</section>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">PL<span>A</span>Y</div>
+      <div class="footer-tagline">India's Sports Discovery & Booking Platform</div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Play</h4>
+        <ul>
+          <li><a href="courts.html">Find Courts</a></li>
+          <li><a href="tournaments.html">Tournaments</a></li>
+          <li><a href="leagues.html">Leagues</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For Venues</h4>
+        <ul>
+          <li><a href="venue.html">List Your Venue</a></li>
+          <li><a href="tournaments.html">Organise Tournament</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Play Sports Pvt. Ltd.</p>
+  </div>
+</footer>
+
+<script>
+const COURTS = [
+  {id:'c1',name:'Sportsfit Badminton Arena',sport:'Badminton',city:'Mumbai',area:'Andheri West',price:350,unit:'per hour',rating:4.8,reviews:312,amenities:['AC','Shuttle','Parking','Changing Room'],courts:6,emoji:'🏸',featured:true},
+  {id:'c2',name:'Smash Zone Table Tennis',sport:'Table Tennis',city:'Mumbai',area:'Dadar East',price:180,unit:'per hour',rating:4.6,reviews:198,amenities:['Coaching','Equipment Rental','Parking'],courts:8,emoji:'🏓'},
+  {id:'c3',name:'Goal Zone Football Turf',sport:'Football',city:'Mumbai',area:'Powai',price:1200,unit:'per hour',rating:4.7,reviews:445,amenities:['Floodlights','Changing Room','Parking','Cafeteria'],courts:3,emoji:'⚽',featured:true},
+  {id:'c4',name:'Ace Tennis Club',sport:'Tennis',city:'Mumbai',area:'Bandra West',price:600,unit:'per hour',rating:4.9,reviews:267,amenities:['Clay Court','Hard Court','Coaching','Parking'],courts:4,emoji:'🎾'},
+  {id:'c5',name:'Bandra Aquatic Centre',sport:'Swimming',city:'Mumbai',area:'Bandra East',price:250,unit:'per session',rating:4.5,reviews:189,amenities:['Olympic Pool','Coaching','Changing Room','Locker'],courts:2,emoji:'🏊'},
+  {id:'c6',name:'Hoops Factory Basketball',sport:'Basketball',city:'Mumbai',area:'Vikhroli',price:500,unit:'per hour',rating:4.4,reviews:134,amenities:['Indoor Court','AC','Changing Room','Equipment'],courts:2,emoji:'🏀'},
+  {id:'c7',name:'CricBox Cricket Nets',sport:'Cricket',city:'Mumbai',area:'Thane',price:800,unit:'per hour',rating:4.6,reviews:321,amenities:['Bowling Machine','Coaching','Pitching Net','Parking'],courts:6,emoji:'🏏'},
+  {id:'c8',name:'Squash Central',sport:'Squash',city:'Mumbai',area:'Lower Parel',price:400,unit:'per hour',rating:4.7,reviews:156,amenities:['Glass Back Court','Coaching','AC','Changing Room'],courts:4,emoji:'🎯'},
+  {id:'c9',name:'Smashers Badminton Academy',sport:'Badminton',city:'Delhi',area:'Dwarka',price:300,unit:'per hour',rating:4.7,reviews:289,amenities:['AC','Shuttle','Coaching','Parking'],courts:8,emoji:'🏸',featured:true},
+  {id:'c10',name:'Delhi Football Arena',sport:'Football',city:'Delhi',area:'Saket',price:1000,unit:'per hour',rating:4.5,reviews:367,amenities:['Astroturf','Floodlights','Changing Room','Cafeteria'],courts:4,emoji:'⚽'},
+  {id:'c11',name:'Net Masters Tennis',sport:'Tennis',city:'Delhi',area:'Vasant Kunj',price:500,unit:'per hour',rating:4.6,reviews:201,amenities:['Hard Court','Coaching','Parking','Equipment'],courts:6,emoji:'🎾'},
+  {id:'c12',name:'Splash Aquatics Delhi',sport:'Swimming',city:'Delhi',area:'Rohini',price:200,unit:'per session',rating:4.4,reviews:145,amenities:['50m Pool','Coaching','Locker','Changing Room'],courts:2,emoji:'🏊'},
+  {id:'c13',name:'Shuttle Up Badminton',sport:'Badminton',city:'Bangalore',area:'Whitefield',price:320,unit:'per hour',rating:4.8,reviews:412,amenities:['AC','Shuttle','Parking','Pro Shop'],courts:10,emoji:'🏸',featured:true},
+  {id:'c14',name:'Koramangala Football Hub',sport:'Football',city:'Bangalore',area:'Koramangala',price:1100,unit:'per hour',rating:4.6,reviews:534,amenities:['Astroturf','Floodlights','Changing Room','Parking'],courts:5,emoji:'⚽'},
+  {id:'c15',name:'HSR Cricket Academy',sport:'Cricket',city:'Bangalore',area:'HSR Layout',price:700,unit:'per hour',rating:4.5,reviews:278,amenities:['Coaching','Bowling Machine','Nets','Parking'],courts:4,emoji:'🏏'},
+  {id:'c16',name:'Baseline Tennis Academy',sport:'Tennis',city:'Bangalore',area:'Indiranagar',price:550,unit:'per hour',rating:4.7,reviews:189,amenities:['Clay Court','Hard Court','Coaching','Parking'],courts:8,emoji:'🎾'},
+  {id:'c17',name:'Rally Point Badminton',sport:'Badminton',city:'Pune',area:'Kothrud',price:280,unit:'per hour',rating:4.6,reviews:234,amenities:['AC','Shuttle','Parking','Coaching'],courts:6,emoji:'🏸'},
+  {id:'c18',name:'Pune Football Ground',sport:'Football',city:'Pune',area:'Viman Nagar',price:900,unit:'per hour',rating:4.5,reviews:312,amenities:['Astroturf','Floodlights','Changing Room'],courts:3,emoji:'⚽'},
+  {id:'c19',name:'Ace Badminton Hyderabad',sport:'Badminton',city:'Hyderabad',area:'Gachibowli',price:300,unit:'per hour',rating:4.7,reviews:267,amenities:['AC','Shuttle','Coaching','Parking'],courts:8,emoji:'🏸'},
+  {id:'c20',name:'HiTech Cricket Nets',sport:'Cricket',city:'Hyderabad',area:'HITEC City',price:750,unit:'per hour',rating:4.6,reviews:198,amenities:['Coaching','Bowling Machine','Nets'],courts:5,emoji:'🏏'},
+  {id:'c21',name:'Chennai Badminton Club',sport:'Badminton',city:'Chennai',area:'Anna Nagar',price:290,unit:'per hour',rating:4.5,reviews:178,amenities:['AC','Shuttle','Parking'],courts:6,emoji:'🏸'},
+  {id:'c22',name:'Marina Football Turf',sport:'Football',city:'Chennai',area:'Adyar',price:950,unit:'per hour',rating:4.4,reviews:289,amenities:['Astroturf','Floodlights','Changing Room'],courts:3,emoji:'⚽'},
+  {id:'c23',name:'Park Street Badminton',sport:'Badminton',city:'Kolkata',area:'Park Street',price:250,unit:'per hour',rating:4.5,reviews:145,amenities:['AC','Shuttle','Parking'],courts:4,emoji:'🏸'},
+  {id:'c24',name:'Salt Lake Football Ground',sport:'Football',city:'Kolkata',area:'Salt Lake',price:800,unit:'per hour',rating:4.6,reviews:356,amenities:['Astroturf','Floodlights','Changing Room','Cafeteria'],courts:4,emoji:'⚽'},
+];
+
+let activeFilter = 'all';
+let filtered = [...COURTS];
+
+function stars(r){return '★'.repeat(Math.floor(r))+'☆'.repeat(5-Math.floor(r))}
+
+function renderCourts(data){
+  const grid = document.getElementById('courtsGrid');
+  document.getElementById('resultsCount').textContent = data.length + ' venues found';
+  if(!data.length){
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div class="emoji">🔍</div><p>No venues match your filters</p></div>';
+    return;
+  }
+  grid.innerHTML = data.map(c=>`
+    <div class="court-card" onclick="window.location='court.html?id=${c.id}'">
+      <div class="court-card-img">
+        <span>${c.emoji}</span>
+        <div class="court-sport-badge">${c.sport}</div>
+        ${c.featured?'<div class="featured-badge">Featured</div>':''}
+      </div>
+      <div class="court-body">
+        <div class="court-name">${c.name}</div>
+        <div class="court-location">📍 ${c.area}, ${c.city} · ${c.courts} ${c.sport==='Swimming'?'Pools':c.sport==='Football'?'Turfs':'Courts'}</div>
+        <div class="court-rating">
+          <span class="stars">${stars(c.rating)}</span>
+          <span class="rating-num">${c.rating}</span>
+          <span class="rating-count">(${c.reviews} reviews)</span>
+        </div>
+        <div class="court-amenities">
+          ${c.amenities.slice(0,3).map(a=>`<span class="amenity-tag">${a}</span>`).join('')}
+          ${c.amenities.length>3?`<span class="amenity-tag">+${c.amenities.length-3} more</span>`:''}
+        </div>
+        <div class="court-footer">
+          <div class="court-price">₹${c.price.toLocaleString()}<small>${c.unit}</small></div>
+          <button class="book-btn">Book Slot →</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function applyFilters(){
+  const city = document.getElementById('cityFilter').value;
+  const sport = document.getElementById('sportFilter').value;
+  const price = document.getElementById('priceFilter').value;
+  filtered = COURTS.filter(c=>{
+    if(city && c.city!==city) return false;
+    if(sport && c.sport!==sport) return false;
+    if(price){
+      const p = parseInt(price);
+      if(p===9999 && c.price<=1000) return false;
+      if(p!==9999 && c.price>p) return false;
+    }
+    if(activeFilter==='featured' && !c.featured) return false;
+    return true;
+  });
+  renderCourts(filtered);
+}
+
+function filterCourts(type, btn){
+  activeFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+document.getElementById('cityFilter').addEventListener('change', applyFilters);
+document.getElementById('sportFilter').addEventListener('change', applyFilters);
+document.getElementById('priceFilter').addEventListener('change', applyFilters);
+
+// Pre-select city from URL
+const urlParams = new URLSearchParams(window.location.search);
+if(urlParams.get('city')) document.getElementById('cityFilter').value = urlParams.get('city');
+if(urlParams.get('sport')) document.getElementById('sportFilter').value = urlParams.get('sport');
+
+renderCourts(COURTS);
+applyFilters();
+
+// Cursor
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a,select').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2.5)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>

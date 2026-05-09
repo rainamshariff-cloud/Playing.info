@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>List Your Venue — Play</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--black:#0d0d0d;--white:#fff;--off:#f7f5f2;--lime:#a8e000;--lime-d:#7ab800;--orange:#ff4d1c;--grey:#f0ede8;--mid:#e0dcd6;--muted:#8a8580;--text:#1a1a1a;--fd:'Bebas Neue',sans-serif;--fb:'DM Sans',sans-serif;--fm:'Space Mono',monospace}
+    html{scroll-behavior:smooth}body{background:var(--white);color:var(--text);font-family:var(--fb);overflow-x:hidden;cursor:none}
+    .cursor{width:10px;height:10px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transition:transform .15s}
+    .cursor-ring{width:34px;height:34px;border:1.5px solid var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transition:all .25s;opacity:.5}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 48px;background:rgba(255,255,255,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--mid)}
+    .nav-logo{font-family:var(--fd);font-size:1.9rem;letter-spacing:.1em;color:var(--black);text-decoration:none}.nav-logo span{color:var(--orange)}
+    .nav-links{display:flex;gap:32px;list-style:none}.nav-links a{font-family:var(--fm);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}.nav-links a:hover{color:var(--orange)}
+    .nav-cta{background:var(--orange);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:10px 22px;border:none;cursor:none;text-decoration:none;display:inline-block}
+
+    .page-wrap{padding-top:72px;display:grid;grid-template-columns:1fr 1fr;min-height:100vh}
+
+    /* LEFT — pitch */
+    .pitch-side{background:var(--black);padding:80px 64px;display:flex;flex-direction:column;justify-content:space-between;position:sticky;top:72px;height:calc(100vh - 72px)}
+    .pitch-tag{font-family:var(--fm);font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .pitch-title{font-family:var(--fd);font-size:clamp(3rem,5vw,5rem);line-height:.92;letter-spacing:.03em;color:var(--white);margin-bottom:32px}
+    .pitch-title span{color:var(--lime)}
+    .benefits{display:flex;flex-direction:column;gap:24px}
+    .benefit{display:flex;gap:16px;align-items:flex-start}
+    .benefit-icon{font-size:1.6rem;flex-shrink:0}
+    .benefit-text h4{font-family:var(--fd);font-size:1.2rem;letter-spacing:.05em;color:var(--white);margin-bottom:4px}
+    .benefit-text p{font-size:.82rem;color:rgba(255,255,255,.4);font-weight:300;line-height:1.6}
+    .pitch-footer{margin-top:auto;padding-top:40px;border-top:1px solid #2a2a2a}
+    .pitch-footer p{font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:4px}
+    .pitch-footer strong{font-family:var(--fd);font-size:1.5rem;color:var(--lime)}
+
+    /* RIGHT — form */
+    .form-side{padding:64px 56px;overflow-y:auto}
+    .form-title{font-family:var(--fd);font-size:2.4rem;letter-spacing:.04em;color:var(--black);margin-bottom:6px}
+    .form-sub{font-family:var(--fm);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:40px}
+
+    .form-section{margin-bottom:36px}
+    .form-section-label{font-family:var(--fm);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--mid);padding-bottom:10px;margin-bottom:20px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .form-grid.full{grid-template-columns:1fr}
+    .form-field{display:flex;flex-direction:column;gap:6px}
+    .form-field label{font-family:var(--fm);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .form-field input,.form-field select,.form-field textarea{padding:12px 16px;border:1.5px solid var(--mid);background:var(--white);font-family:var(--fb);font-size:.9rem;color:var(--text);outline:none;transition:border-color .2s;cursor:none;resize:none}
+    .form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--orange)}
+
+    .sports-check{display:flex;flex-wrap:wrap;gap:8px}
+    .sport-check{display:flex;align-items:center;gap:8px;padding:8px 14px;border:1.5px solid var(--mid);cursor:none;transition:all .2s;background:var(--white)}
+    .sport-check:hover{border-color:var(--orange)}
+    .sport-check.checked{border-color:var(--orange);background:rgba(255,77,28,.06)}
+    .sport-check input{display:none}
+    .sport-check span{font-family:var(--fm);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text)}
+
+    .submit-btn{width:100%;background:var(--orange);color:var(--white);font-family:var(--fd);font-size:1.5rem;letter-spacing:.1em;padding:20px;border:none;cursor:none;transition:background .2s;margin-top:8px}
+    .submit-btn:hover{background:#e8431a}
+    .submit-note{font-family:var(--fm);font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-align:center;margin-top:12px}
+
+    .success-state{display:none;text-align:center;padding:80px 40px}
+    .success-state .icon{font-size:4rem;margin-bottom:20px}
+    .success-state h2{font-family:var(--fd);font-size:2.5rem;letter-spacing:.05em;margin-bottom:12px}
+    .success-state p{font-size:.9rem;color:var(--muted);line-height:1.7;max-width:360px;margin:0 auto}
+    .success-state .back-btn{margin-top:28px;background:var(--black);color:var(--white);font-family:var(--fm);font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:14px 32px;border:none;cursor:none;display:inline-block;text-decoration:none}
+
+    @media(max-width:900px){
+      nav{padding:14px 20px}.nav-links{display:none}
+      .page-wrap{grid-template-columns:1fr}
+      .pitch-side{position:static;height:auto;padding:60px 24px}
+      .form-side{padding:40px 24px}
+    }
+  </style>
+</head>
+<body>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<nav>
+  <a href="index.html" class="nav-logo">PL<span>A</span>Y</a>
+  <ul class="nav-links">
+    <li><a href="courts.html">Courts</a></li>
+    <li><a href="tournaments.html">Tournaments</a></li>
+    <li><a href="leagues.html">Leagues</a></li>
+  </ul>
+  <a href="venue.html" class="nav-cta">List Your Venue</a>
+</nav>
+
+<div class="page-wrap">
+  <!-- LEFT -->
+  <div class="pitch-side">
+    <div>
+      <div class="pitch-tag">— Partner with Play</div>
+      <div class="pitch-title">GROW YOUR<br><span>VENUE</span><br>WITH US</div>
+      <div class="benefits">
+        <div class="benefit">
+          <div class="benefit-icon">📈</div>
+          <div class="benefit-text">
+            <h4>MORE BOOKINGS</h4>
+            <p>Reach thousands of active players searching for courts in your city every day.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">💰</div>
+          <div class="benefit-text">
+            <h4>ZERO UPFRONT COST</h4>
+            <p>Free to list on Play marketplace. Play earns 12% commission only on completed bookings. You keep 88%. No setup fees.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">📅</div>
+          <div class="benefit-text">
+            <h4>MANAGE EVERYTHING</h4>
+            <p>Your own dashboard to control slots, pricing, availability, and receive payouts.</p>
+          </div>
+        </div>
+        <div class="benefit">
+          <div class="benefit-icon">⚡</div>
+          <div class="benefit-text">
+            <h4>INSTANT PAYOUTS</h4>
+            <p>Player payments collected via Razorpay. Your 88% transferred to your bank within 24 hours.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pitch-footer">
+      <p>Average monthly bookings for listed venues</p>
+      <strong>₹45,000 — ₹1.8L</strong>
+    </div>
+  </div>
+
+  <!-- RIGHT — FORM -->
+  <div class="form-side">
+    <div id="formState">
+      <div class="form-title">LIST YOUR VENUE</div>
+      <div class="form-sub">— Takes 5 minutes · Go live within 24 hours</div>
+
+      <div class="form-section">
+        <div class="form-section-label">01 · Venue Details</div>
+        <div class="form-grid">
+          <div class="form-field"><label>Venue Name</label><input id="vName" placeholder="e.g. Sportsfit Badminton Arena"/></div>
+          <div class="form-field"><label>Owner / Manager Name</label><input id="vOwner" placeholder="Your name"/></div>
+          <div class="form-field"><label>City</label>
+            <select id="vCity">
+              <option value="">Select City</option>
+              <option>Mumbai</option><option>Delhi</option><option>Bangalore</option>
+              <option>Pune</option><option>Hyderabad</option><option>Chennai</option><option>Kolkata</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-field"><label>Area / Locality</label><input id="vArea" placeholder="e.g. Andheri West"/></div>
+        </div>
+        <div class="form-grid full" style="margin-top:14px">
+          <div class="form-field"><label>Full Address</label><textarea id="vAddress" rows="2" placeholder="Street address, landmark"></textarea></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-label">02 · Sports Available</div>
+        <div class="sports-check" id="sportsCheck">
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Badminton"><span>🏸 Badminton</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Football"><span>⚽ Football</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Cricket"><span>🏏 Cricket</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Tennis"><span>🎾 Tennis</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Basketball"><span>🏀 Basketball</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Swimming"><span>🏊 Swimming</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Table Tennis"><span>🏓 Table Tennis</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Squash"><span>🎯 Squash</span></div>
+          <div class="sport-check" onclick="toggleSport(this)"><input type="checkbox" value="Skating"><span>🛼 Skating</span></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-label">03 · Capacity & Pricing</div>
+        <div class="form-grid">
+          <div class="form-field"><label>Number of Courts / Lanes</label><input id="vCourts" type="number" placeholder="e.g. 6" min="1"/></div>
+          <div class="form-field"><label>Price Per Hour (₹)</label><input id="vPrice" type="number" placeholder="e.g. 350" min="1"/></div>
+          <div class="form-field"><label>Opening Time</label><input id="vOpen" type="time" value="06:00"/></div>
+          <div class="form-field"><label>Closing Time</label><input id="vClose" type="time" value="22:00"/></div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-label">04 · Contact & Bank Details</div>
+        <div class="form-grid">
+          <div class="form-field"><label>Mobile Number</label><input id="vPhone" type="tel" placeholder="+91 98765 43210"/></div>
+          <div class="form-field"><label>Email</label><input id="vEmail" type="email" placeholder="venue@email.com"/></div>
+          <div class="form-field"><label>Bank Account Number</label><input id="vAcc" placeholder="Account number for payouts"/></div>
+          <div class="form-field"><label>IFSC Code</label><input id="vIFSC" placeholder="e.g. HDFC0001234"/></div>
+          <div class="form-field"><label>Account Holder Name</label><input id="vAccName" placeholder="As per bank records"/></div>
+          <div class="form-field"><label>UPI ID (optional)</label><input id="vUPI" placeholder="yourname@upi"/></div>
+        </div>
+        <div class="form-grid full" style="margin-top:14px">
+          <div class="form-field"><label>GST Number (if applicable)</label><input id="vGST" placeholder="22AAAAA0000A1Z5"/></div>
+        </div>
+      </div>
+
+      <button class="submit-btn" onclick="submitVenue()">SUBMIT & GO LIVE →</button>
+      <div class="submit-note">Play partner team reviews applications within 24 hours · Zero cost to list</div>
+    </div>
+
+    <div class="success-state" id="successState">
+      <div class="icon">🎉</div>
+      <h2>APPLICATION RECEIVED!</h2>
+      <p>Play's partner team will verify your details and list you within <strong>24 hours</strong>. Our partner team will contact you on your mobile number.</p>
+      <br>
+      <p style="font-family:var(--fm);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Questions? WhatsApp us at <strong style="color:var(--text)">+91 98765 43210</strong></p>
+      <a href="index.html" class="back-btn">Back to Play</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSport(el){
+  el.classList.toggle('checked');
+  el.querySelector('input').checked = el.classList.contains('checked');
+}
+
+function submitVenue(){
+  const name=document.getElementById('vName').value.trim();
+  const owner=document.getElementById('vOwner').value.trim();
+  const city=document.getElementById('vCity').value;
+  const phone=document.getElementById('vPhone').value.trim();
+  const email=document.getElementById('vEmail').value.trim();
+  const acc=document.getElementById('vAcc').value.trim();
+  const ifsc=document.getElementById('vIFSC').value.trim();
+  if(!name||!owner||!city||!phone||!email){alert('Please fill in all required venue and contact details.');return;}
+  if(!acc||!ifsc){alert('Please enter your bank account details for payouts.');return;}
+  const sports=[...document.querySelectorAll('.sport-check.checked')].map(el=>el.querySelector('input').value);
+  if(!sports.length){alert('Please select at least one sport.');return;}
+  // In production: POST this to your backend / Google Sheets / Firebase
+  console.log('Venue submission:',{name,owner,city,phone,email,sports,acc,ifsc});
+  document.getElementById('formState').style.display='none';
+  document.getElementById('successState').style.display='block';
+  document.getElementById('successState').scrollIntoView({behavior:'smooth'});
+}
+
+const cursor=document.getElementById('cursor'),ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx-5+'px';cursor.style.top=my-5+'px'});
+(function anim(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx-17+'px';ring.style.top=ry-17+'px';requestAnimationFrame(anim)})();
+document.querySelectorAll('button,a,input,select,textarea').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.transform='scale(2)';ring.style.opacity='1'});
+  el.addEventListener('mouseleave',()=>{cursor.style.transform='scale(1)';ring.style.opacity='.5'});
+});
+</script>
+</body>
+</html>
